@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Amaliyot va bitiruvchilar{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>{{ practice.title|default:"Amaliyot" }}</h1>
+    <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    {% if practice.partner_name %}<p>Hamkor: {{ practice.partner_name }}</p>{% endif %}
+</section>
+{% endblock %}

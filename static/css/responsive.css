@@ -1,0 +1,111 @@
+﻿@media (max-width: 991px) {
+    body {
+        padding-top: 96px;
+    }
+
+    .grid.two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .header .topbar {
+        height: auto;
+        min-height: 40px;
+        padding: 8px 0;
+    }
+
+    .header .topbar .container {
+        justify-content: center !important;
+    }
+
+    .header .topbar .contact-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header .topbar .contact-info .ms-4 {
+        margin-left: 0 !important;
+    }
+
+    .header .branding {
+        min-height: 62px;
+    }
+
+    .brand-logo {
+        height: 44px;
+        width: auto;
+        max-width: 180px;
+    }
+
+    .site-navbar .dropdown-menu {
+        border: 0;
+        box-shadow: none;
+        padding-left: 12px;
+        background: #f8fbff;
+    }
+
+    .footer-16 {
+        padding-top: 72px;
+    }
+
+    .footer-16 .footer-main {
+        margin-bottom: 46px;
+    }
+
+    .footer-16 .footer-nav-wrapper {
+        padding-left: 0;
+        margin-top: 26px;
+    }
+
+    .footer-16 .footer-bottom .legal-links {
+        justify-content: flex-start;
+        margin-top: 18px;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-top: 90px;
+    }
+
+    .header .topbar {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+
+    .header .topbar .contact-info i:nth-child(2) {
+        display: none;
+    }
+
+    .brand-logo {
+        height: 36px;
+        width: auto;
+        max-width: 150px;
+    }
+
+    .footer-16 {
+        padding-top: 64px;
+    }
+
+    .footer-16 .brand-section .logo .sitename {
+        font-size: 26px;
+    }
+
+    .footer-16 .brand-section .brand-description {
+        font-size: 15px;
+    }
+
+    .footer-16 .nav-column {
+        margin-bottom: 24px;
+    }
+
+    .footer-16 .footer-bottom {
+        text-align: center;
+    }
+
+    .footer-16 .footer-bottom .legal-links {
+        justify-content: center;
+    }
+}

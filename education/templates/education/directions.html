@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Ta'lim yo'nalishlari{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Ta'lim yo'nalishlari</h1>
+    {% for direction in directions %}
+        <div class="item">
+            <h3>{{ direction.name }}</h3>
+            <p>{{ direction.description }}</p>
+            <p>Davomiyligi: {{ direction.duration_years }} yil</p>
+        </div>
+    {% empty %}
+        <p>Yo'nalishlar mavjud emas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+from django.contrib import admin
+
+from .models import Assessment, EducationDirection, EducationProcess, Practice
+
+
+@admin.register(EducationDirection)
+class EducationDirectionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'duration_years', 'is_active')
+    list_filter = ('is_active', 'departments')
+    search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(EducationProcess)
+class EducationProcessAdmin(admin.ModelAdmin):
+    list_display = ('title', 'updated_at')
+    search_fields = ('title', 'content')
+
+
+@admin.register(Assessment)
+class AssessmentAdmin(admin.ModelAdmin):
+    list_display = ('title', 'updated_at')
+    search_fields = ('title', 'content')
+
+
+@admin.register(Practice)
+class PracticeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'partner_name', 'updated_at')
+    search_fields = ('title', 'partner_name', 'content')

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Kafedralar{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Kafedralar</h1>
+    {% for department in departments %}
+        <p><a href="{% url 'departments:department_detail' department.slug %}">{{ department.name }}</a></p>
+    {% empty %}
+        <p>Kafedralar ro'yxati bo'sh.</p>
+    {% endfor %}
+</section>
+{% endblock %}

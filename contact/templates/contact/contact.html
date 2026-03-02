@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}A'loqa{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>A'loqa</h1>
+    {% if contact_info %}
+        <p><strong>Manzil:</strong> {{ contact_info.address }}</p>
+        <p><strong>Telefon:</strong> {{ contact_info.phone }}</p>
+        <p><strong>Email:</strong> {{ contact_info.email }}</p>
+        <p><strong>Ish vaqti:</strong> {{ contact_info.working_hours }}</p>
+    {% endif %}
+</section>
+
+<section class="card">
+    <h2>Xabar yuborish</h2>
+    <form method="post" class="form-grid">
+        {% csrf_token %}
+        <input type="text" name="full_name" placeholder="F.I.Sh" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Telefon">
+        <input type="text" name="subject" placeholder="Mavzu" required>
+        <textarea name="message" rows="5" placeholder="Xabar" required></textarea>
+        <button type="submit">Yuborish</button>
+    </form>
+</section>
+{% endblock %}

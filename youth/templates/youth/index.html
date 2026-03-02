@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Yoshlar bilan ishlash{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Yoshlar bilan ishlash</h1>
+    {% for item in activities %}
+        <div class="item">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            {% if item.event_date %}<small>{{ item.event_date }}</small>{% endif %}
+        </div>
+    {% empty %}
+        <p>Faoliyatlar kiritilmagan.</p>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ department.name }}{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>{{ department.name }}</h1>
+    <p>{{ department.description|linebreaks }}</p>
+    <p><strong>Kafedra mudiri:</strong> {{ department.head_name }}</p>
+    <h2>O'qituvchilar</h2>
+    {% for teacher in teachers %}
+        <p><a href="{% url 'faculty:teacher_detail' teacher.id %}">{{ teacher.last_name }} {{ teacher.first_name }}</a></p>
+    {% empty %}
+        <p>Bu kafedrada o'qituvchilar kiritilmagan.</p>
+    {% endfor %}
+</section>
+{% endblock %}

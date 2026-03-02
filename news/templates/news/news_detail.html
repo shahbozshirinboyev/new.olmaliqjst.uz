@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>{{ news.title }}</h1>
+    <p><small>{{ news.published_at }}</small></p>
+    <p>{{ news.content|linebreaks }}</p>
+</section>
+{% endblock %}

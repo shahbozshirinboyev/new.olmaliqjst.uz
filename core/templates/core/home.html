@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Bosh sahifa{% endblock %}
+{% block content %}
+<section class="hero card">
+    <h1>Olmaliq texnikumiga xush kelibsiz</h1>
+    <p>Ta'lim, hamkorlik va innovatsiyalar markazi.</p>
+</section>
+<section class="grid two-col">
+    <article class="card">
+        <h2>Rahbariyat</h2>
+        {% for leader in leaders %}
+            <p><strong>{{ leader.full_name }}</strong> - {{ leader.position }}</p>
+        {% empty %}
+            <p>Ma'lumotlar kiritilmagan.</p>
+        {% endfor %}
+    </article>
+    <article class="card">
+        <h2>So'nggi yangiliklar</h2>
+        {% for item in latest_news %}
+            <p><a href="{% url 'news:news_detail' item.slug %}">{{ item.title }}</a></p>
+        {% empty %}
+            <p>Yangiliklar mavjud emas.</p>
+        {% endfor %}
+    </article>
+</section>
+{% endblock %}

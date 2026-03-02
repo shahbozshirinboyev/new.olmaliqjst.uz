@@ -1,0 +1,73 @@
+{% load static %}
+<header id="header" class="header fixed-top">
+    <div class="topbar d-flex align-items-center">
+        <div class="container d-flex justify-content-center justify-content-md-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope d-flex align-items-center">
+                    <a href="mailto:olmaliqjst@gmail.com">olmaliqjst@gmail.com</a>
+                </i>
+                <i class="bi bi-phone d-flex align-items-center ms-4">
+                    <span>+998 (55) 900-04-99</span>
+                </i>
+            </div>
+            <div class="social-links d-none d-md-flex align-items-center">
+                <a href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="branding d-flex align-items-center">
+        <nav class="navbar navbar-expand-lg site-navbar py-2 w-100">
+            <div class="container position-relative d-flex align-items-center justify-content-between">
+                <a class="navbar-brand brand d-flex align-items-center gap-2" href="{% url 'core:home' %}">
+                    <img class="brand-logo" src="{% static 'images/logo.png' %}" alt="Olmaliq texnikumi logosi">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Menyuni ochish">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:home' %}">Bosh sahifa</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ta'lim</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'education:directions' %}">Ta'lim yo'nalishlari</a></li>
+                                <li><a class="dropdown-item" href="{% url 'education:departments_list' %}">Kafedralar</a></li>
+                                <li><a class="dropdown-item" href="{% url 'education:process' %}">O'quv jarayoni</a></li>
+                                <li><a class="dropdown-item" href="{% url 'education:assessment' %}">Baholash va nazorat</a></li>
+                                <li><a class="dropdown-item" href="{% url 'education:practice' %}">Amaliyot va bitiruvchilar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Texnikum</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'core:about' %}">Umumiy ma'lumot</a></li>
+                                <li><a class="dropdown-item" href="{% url 'core:leadership' %}">Rahbariyat</a></li>
+                                <li><a class="dropdown-item" href="{% url 'core:material_base' %}">Moddiy texnik baza</a></li>
+                                <li><a class="dropdown-item" href="{% url 'core:documents' %}">Me'yoriy hujjatlar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hamkor tashkilotlar</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#davlat-tashkilotlari">Davlat tashkilotlari</a></li>
+                                <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#tibbiyot-muassasalari">Tibbiyot muassasalari</a></li>
+                                <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#talim-muassasalari">Ta'lim muassasalari</a></li>
+                                <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#xalqaro-hamkorlar">Xalqaro hamkorlar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact:contact' %}">A'loqa</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

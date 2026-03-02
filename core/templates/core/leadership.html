@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Rahbariyat{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Rahbariyat</h1>
+    {% for leader in leaders %}
+        <div class="item">
+            <h3>{{ leader.full_name }}</h3>
+            <p>{{ leader.position }}</p>
+            <p>{{ leader.bio }}</p>
+        </div>
+    {% empty %}
+        <p>Rahbariyat ma'lumotlari mavjud emas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

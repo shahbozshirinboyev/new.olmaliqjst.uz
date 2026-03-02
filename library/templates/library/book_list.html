@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Kutubxona{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Elektron kutubxona</h1>
+    {% for book in books %}
+        <div class="item">
+            <h3><a href="{% url 'library:book_detail' book.id %}">{{ book.title }}</a></h3>
+            <p>{{ book.author }} | {{ book.category.name }}</p>
+        </div>
+    {% empty %}
+        <p>Kitoblar ro'yxati bo'sh.</p>
+    {% endfor %}
+</section>
+{% endblock %}

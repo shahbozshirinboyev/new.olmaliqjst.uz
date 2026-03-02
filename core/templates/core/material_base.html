@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Moddiy-texnik baza{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>{{ material.title|default:"Moddiy-texnik baza" }}</h1>
+    <p>{{ material.description|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+</section>
+{% endblock %}

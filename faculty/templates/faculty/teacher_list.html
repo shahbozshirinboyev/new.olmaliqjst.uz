@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}O'qituvchilar{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>O'qituvchilar</h1>
+    {% for teacher in teachers %}
+        <div class="item">
+            <h3><a href="{% url 'faculty:teacher_detail' teacher.id %}">{{ teacher.last_name }} {{ teacher.first_name }}</a></h3>
+            <p>{{ teacher.position }} | {{ teacher.department.name }}</p>
+        </div>
+    {% empty %}
+        <p>O'qituvchilar ro'yxati bo'sh.</p>
+    {% endfor %}
+</section>
+{% endblock %}

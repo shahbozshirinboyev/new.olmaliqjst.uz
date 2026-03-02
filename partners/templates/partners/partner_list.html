@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Hamkor tashkilotlar{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Hamkor tashkilotlar</h1>
+    {% for category in categories %}
+        <h2 id="{{ category.slug|slugify }}">{{ category.name }}</h2>
+        {% for partner in category.partners.all %}
+            {% if partner.is_active %}
+                <p>
+                    <strong>{{ partner.name }}</strong>
+                    {% if partner.website %}- <a href="{{ partner.website }}" target="_blank" rel="noopener">Sayt</a>{% endif %}
+                </p>
+            {% endif %}
+        {% empty %}
+            <p>Bu kategoriyada hamkorlar yo'q.</p>
+        {% endfor %}
+    {% empty %}
+        <p>Kategoriyalar kiritilmagan.</p>
+    {% endfor %}
+</section>
+{% endblock %}

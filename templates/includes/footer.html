@@ -1,0 +1,110 @@
+<footer id="footer" class="footer-16 footer position-relative">
+    <div class="container">
+        <div class="footer-main" data-aos="fade-up" data-aos-delay="100">
+            <div class="row align-items-start">
+                <div class="col-lg-5">
+                    <div class="brand-section">
+                        <a href="{% url 'core:home' %}" class="logo d-flex align-items-center mb-4">
+                            <span class="sitename">Olmaliq Texnikumi</span>
+                        </a>
+                        <p class="brand-description">
+                            Zamonaviy ta'lim, amaliy ko'nikma va professional rivojlanishga yo'naltirilgan o'quv maskani.
+                        </p>
+
+                        <div class="contact-info mt-4">
+                            <div class="contact-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Olmaliq shahri, O'zbekiston</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-telephone"></i>
+                                <span>+998 (55) 900-04-99</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-envelope"></i>
+                                <span>olmaliqjst@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="footer-nav-wrapper">
+                        <div class="row">
+                            <div class="col-6 col-lg-3">
+                                <div class="nav-column">
+                                    <h6>Ta'lim</h6>
+                                    <nav class="footer-nav">
+                                        <a href="{% url 'education:directions' %}">Ta'lim yo'nalishlari</a>
+                                        <a href="{% url 'education:departments_list' %}">Kafedralar</a>
+                                        <a href="{% url 'education:process' %}">O'quv jarayoni</a>
+                                        <a href="{% url 'education:assessment' %}">Baholash</a>
+                                        <a href="{% url 'education:practice' %}">Amaliyot</a>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-lg-3">
+                                <div class="nav-column">
+                                    <h6>Texnikum</h6>
+                                    <nav class="footer-nav">
+                                        <a href="{% url 'core:about' %}">Umumiy ma'lumot</a>
+                                        <a href="{% url 'core:leadership' %}">Rahbariyat</a>
+                                        <a href="{% url 'core:material_base' %}">Moddiy baza</a>
+                                        <a href="{% url 'core:documents' %}">Hujjatlar</a>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-lg-3">
+                                <div class="nav-column">
+                                    <h6>Hamkorlar</h6>
+                                    <nav class="footer-nav">
+                                        <a href="{% url 'partners:partner_list' %}#davlat-tashkilotlari">Davlat tashkilotlari</a>
+                                        <a href="{% url 'partners:partner_list' %}#tibbiyot-muassasalari">Tibbiyot muassasalari</a>
+                                        <a href="{% url 'partners:partner_list' %}#talim-muassasalari">Ta'lim muassasalari</a>
+                                        <a href="{% url 'partners:partner_list' %}#xalqaro-hamkorlar">Xalqaro hamkorlar</a>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-lg-3">
+                                <div class="nav-column">
+                                    <h6>Bo'limlar</h6>
+                                    <nav class="footer-nav">
+                                        <a href="{% url 'news:news_list' %}">Yangiliklar</a>
+                                        <a href="{% url 'faculty:teacher_list' %}">O'qituvchilar</a>
+                                        <a href="{% url 'library:book_list' %}">Kutubxona</a>
+                                        <a href="{% url 'youth:index' %}">Yoshlar</a>
+                                        <a href="{% url 'contact:contact' %}">A'loqa</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="bottom-content" data-aos="fade-up" data-aos-delay="250">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="copyright">
+                            <p>&copy; {% now "Y" %} <span class="sitename">Olmaliq Texnikumi</span>. Barcha huquqlar himoyalangan.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="legal-links">
+                            <a href="{% url 'core:home' %}">Bosh sahifa</a>
+                            <a href="{% url 'news:news_list' %}">Yangiliklar</a>
+                            <a href="{% url 'contact:contact' %}">Bog'lanish</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

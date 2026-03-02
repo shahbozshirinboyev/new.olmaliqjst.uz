@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Yangiliklar{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Yangiliklar</h1>
+    {% for item in news_items %}
+        <div class="item">
+            <h3><a href="{% url 'news:news_detail' item.slug %}">{{ item.title }}</a></h3>
+            <p>{{ item.excerpt }}</p>
+            <small>{{ item.published_at }}</small>
+        </div>
+    {% empty %}
+        <p>Yangiliklar mavjud emas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

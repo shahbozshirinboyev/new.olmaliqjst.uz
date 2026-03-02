@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ teacher.last_name }} {{ teacher.first_name }}{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.middle_name }}</h1>
+    <p><strong>Lavozim:</strong> {{ teacher.position }}</p>
+    <p><strong>Kafedra:</strong> {{ teacher.department.name }}</p>
+    <p><strong>Tajriba:</strong> {{ teacher.experience_years }} yil</p>
+    <p>{{ teacher.bio|linebreaks }}</p>
+</section>
+{% endblock %}
