@@ -43,6 +43,12 @@ html {
     margin: 0 auto;
 }
 
+@media (min-width: 1200px) {
+    .container {
+        width: min(1320px, 92%);
+    }
+}
+
 .header {
     transition: all 0.5s;
     z-index: 1100 !important;

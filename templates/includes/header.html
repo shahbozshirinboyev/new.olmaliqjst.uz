@@ -4,21 +4,23 @@
     <div class="topbar d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
 
-           <div class="contact-info d-flex align-items-center">
+           <div class="contact-info d-flex align-items-center gap-3">
 
-                <div class="d-flex align-items-center">
+                <!-- <div class="d-flex align-items-center">
                     <i class="bi bi-envelope me-2"></i>
                     <span>{{ topbar_settings.email }}</span>
-                </div>
+                </div> -->
 
-                <div class="d-flex align-items-center ms-4">
-                    <i class="bi bi-phone me-2 "></i>
+                <div class="d-flex align-items-center">
+                    <a href="tel:{{ topbar_settings.phone }}" class="link-underline link-underline-opacity-0 lh-1">
+                        <i class="bi bi-phone me-1"></i>
                     <span>{{ topbar_settings.phone }}</span>
+                    </a>
                 </div>
 
             </div>
 
-            <div class="social-links d-none d-md-flex align-items-center">
+            <div class="social-links d-flex align-items-center">
                 <a href="{{ topbar_settings.telegram_url }}" target="_blank" rel="noopener" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
                 <a href="{{ topbar_settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                 <a href="{{ topbar_settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>

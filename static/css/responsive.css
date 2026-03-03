@@ -58,7 +58,8 @@
     }
 
     .header .topbar .container {
-        justify-content: center !important;
+        justify-content: space-between !important;
+        min-height: 30px;
     }
 
     .header .topbar .contact-info {
@@ -127,9 +128,9 @@
         padding-top: 62px;
     }
 
-    .header .topbar {
+    /* .header .topbar {
         display: none;
-    }
+    } */
 
     .header .branding {
         min-height: 62px;
