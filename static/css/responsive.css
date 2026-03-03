@@ -98,7 +98,7 @@
         border: 0;
         box-shadow: none;
         padding-left: 12px;
-        background: #f8fbff;
+        background: var(--secondary-bg);
     }
 
     .footer-16 {

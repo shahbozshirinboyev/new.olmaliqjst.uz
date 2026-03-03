@@ -1,12 +1,16 @@
 ﻿:root {
-    --bg: #f5f7fb;
+    --bg: #e9edf2;
     --card: #ffffff;
-    --text: #1e293b;
-    --muted: #64748b;
-    --primary: #0f766e;
-    --border: #dbe3ee;
-    --header-accent: #0f65d8;
-    --nav-text: #334155;
+    --text: #1f2937;
+    --muted: #4b5563;
+    --primary: #2e2a6b;
+    --border: #c8d2dc;
+    --header-accent: #2e8b57;
+    --nav-text: #2e2a6b;
+    --primary-hover: #1f6f45;
+    --secondary-bg: #dce3ea;
+    --brand-gradient: linear-gradient(90deg, #2e2a6b 0%, #2e8b57 85%);
+    --soft-shadow: rgba(46, 42, 107, 0.15);
 }
 
 * {
@@ -16,10 +20,18 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, sans-serif;
-    background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 40%);
+    background: linear-gradient(180deg, var(--secondary-bg) 0%, var(--bg) 45%);
     color: var(--text);
     padding-top: 108px;
     overflow-x: clip;
+}
+
+a {
+    color: var(--header-accent);
+}
+
+a:hover {
+    color: var(--primary-hover);
 }
 
 html {
@@ -34,11 +46,11 @@ html {
 .header {
     transition: all 0.5s;
     z-index: 1100 !important;
-    background-color: #ffffff;
+    background-color: var(--secondary-bg);
 }
 
 .header .topbar {
-    background: linear-gradient(90deg, #0a4ba8 0%, var(--header-accent) 100%);
+    background: var(--brand-gradient);
     font-size: 14px;
     transition: all 0.5s;
     height: 40px;
@@ -59,10 +71,11 @@ html {
 }
 
 .header .topbar .contact-info i a,
-.header .topbar .contact-info i span {
-    padding-left: 6px;
+.header .topbar .contact-info i,
+.header .topbar .contact-info span {
     color: #ffffff;
     text-decoration: none;
+    line-height: 1;
 }
 
 .header .topbar .contact-info i a:hover {
@@ -70,7 +83,7 @@ html {
 }
 
 .header .topbar .social-links a {
-    color: rgba(255, 255, 255, 0.74);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 0;
     transition: all 0.3s ease;
     margin-left: 18px;
@@ -131,7 +144,7 @@ html {
 }
 
 .site-navbar {
-    background: #ffffff !important;
+    background: var(--secondary-bg) !important;
 }
 
 .site-navbar .navbar-brand,
@@ -140,7 +153,7 @@ html {
 }
 
 .site-navbar .navbar-toggler {
-    border-color: rgba(51, 65, 85, 0.35);
+    border-color: rgba(46, 42, 107, 0.35);
     width: auto;
     padding: 0.25rem 0.6rem;
 }
@@ -150,7 +163,7 @@ html {
 }
 
 .site-navbar .navbar-toggler-icon {
-    filter: invert(25%) sepia(9%) saturate(1500%) hue-rotate(176deg) brightness(98%) contrast(89%);
+    filter: none;
 }
 
 .site-navbar .nav-link {
@@ -168,7 +181,7 @@ html {
 }
 
 .site-navbar .dropdown-menu {
-    border: 1px solid #e5edf8;
+    border: 1px solid var(--border);
     border-radius: 10px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
     padding: 8px;
@@ -183,8 +196,8 @@ html {
 
 .site-navbar .dropdown-item:hover,
 .site-navbar .dropdown-item:focus {
-    background-color: #f1f5f9;
-    color: var(--header-accent);
+    background-color: var(--secondary-bg);
+    color: var(--primary-hover);
 }
 
 @media (min-width: 992px) {
@@ -317,10 +330,10 @@ html {
 
 .home-virtual-tour__frame,
 .video-container {
-    border: 1px solid #d8e1ef;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 10px;
-    background: #f8fbff;
+    background: var(--secondary-bg);
 }
 
 .home-virtual-tour__frame iframe,
@@ -499,7 +512,7 @@ html {
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 12px;
-    background: #f8fbff;
+    background: var(--secondary-bg);
 }
 
 .home-directions__item h3 {
@@ -616,14 +629,30 @@ textarea,
     color: #fff;
     border: none;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-grid button:hover,
+.form-grid button:focus-visible {
+    background: var(--primary-hover);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: var(--primary-hover);
+    --bs-btn-hover-border-color: var(--primary-hover);
+    --bs-btn-active-bg: var(--primary-hover);
+    --bs-btn-active-border-color: var(--primary-hover);
+    --bs-btn-focus-shadow-rgb: 46, 42, 107;
 }
 
 .footer-16 {
-    background: #ffffff;
+    background: var(--secondary-bg);
     color: var(--text);
     font-size: 15px;
     padding: 86px 0 0;
-    border-top: 1px solid #e6edf7;
+    border-top: 1px solid var(--border);
 }
 
 .footer-16 .footer-main {
@@ -637,14 +666,14 @@ textarea,
 .footer-16 .brand-section .logo .sitename {
     font-size: 30px;
     font-weight: 300;
-    color: #0f172a;
+    color: var(--primary);
     letter-spacing: -0.4px;
 }
 
 .footer-16 .brand-section .brand-description {
     font-size: 17px;
     line-height: 1.65;
-    color: #475569;
+    color: var(--muted);
     font-weight: 300;
     max-width: 380px;
     margin: 0;
@@ -655,7 +684,7 @@ textarea,
     align-items: flex-start;
     margin-bottom: 14px;
     font-size: 15px;
-    color: #334155;
+    color: var(--text);
 }
 
 .footer-16 .brand-section .contact-info .contact-item i {
@@ -681,7 +710,7 @@ textarea,
 .footer-16 .nav-column h6 {
     font-size: 16px;
     font-weight: 600;
-    color: #0f172a;
+    color: var(--primary);
     margin-bottom: 18px;
     letter-spacing: 0.2px;
 }
@@ -693,7 +722,7 @@ textarea,
 }
 
 .footer-16 .nav-column .footer-nav a {
-    color: #475569;
+    color: var(--muted);
     text-decoration: none;
     font-size: 14px;
     font-weight: 400;
@@ -702,24 +731,24 @@ textarea,
 }
 
 .footer-16 .nav-column .footer-nav a:hover {
-    color: var(--header-accent);
+    color: var(--primary-hover);
     transform: translateX(4px);
 }
 
 .footer-16 .footer-bottom {
     padding: 24px 0;
-    border-top: 1px solid #edf2f9;
+    border-top: 1px solid var(--border);
 }
 
 .footer-16 .footer-bottom .copyright p {
     margin: 0;
     font-size: 14px;
-    color: #64748b;
+    color: var(--muted);
     font-weight: 400;
 }
 
 .footer-16 .footer-bottom .copyright p .sitename {
-    color: #0f172a;
+    color: var(--primary);
     font-weight: 500;
 }
 
@@ -732,19 +761,19 @@ textarea,
 
 .footer-16 .footer-bottom .legal-links a {
     font-size: 13px;
-    color: #64748b;
+    color: var(--muted);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-16 .footer-bottom .legal-links a:hover {
-    color: var(--header-accent);
+    color: var(--primary-hover);
 }
 
 .page-loader {
     position: fixed;
     inset: 0;
-    background: rgba(7, 28, 46, 0.78);
+    background: rgba(46, 42, 107, 0.78);
     z-index: 1200;
     display: flex;
     flex-direction: column;
