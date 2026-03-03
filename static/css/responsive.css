@@ -110,6 +110,10 @@
         margin-bottom: 46px;
     }
 
+    .footer-16 .brand-section .footer-brand-logo {
+        height: 88px;
+    }
+
     .footer-16 .footer-nav-wrapper {
         padding-left: 0;
         margin-top: 26px;
@@ -238,6 +242,10 @@
 
     .footer-16 .brand-section .brand-description {
         font-size: 15px;
+    }
+
+    .footer-16 .brand-section .footer-brand-logo {
+        height: 72px;
     }
 
     .footer-16 .nav-column {
