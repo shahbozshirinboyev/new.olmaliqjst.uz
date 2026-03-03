@@ -52,7 +52,8 @@ html {
 .header {
     transition: all 0.5s;
     z-index: 1100 !important;
-    background-color: var(--secondary-bg);
+    background-color: #ffffff;
+    box-shadow: 0 6px 18px rgba(31, 41, 55, 0.08);
 }
 
 .header .topbar {
@@ -150,7 +151,7 @@ html {
 }
 
 .site-navbar {
-    background: var(--secondary-bg) !important;
+    background: #ffffff !important;
 }
 
 .site-navbar .navbar-brand,
@@ -654,10 +655,10 @@ textarea,
 }
 
 .footer-16 {
-    background: linear-gradient(180deg, #e9eef4 0%, #dfe7ee 100%);
+    background: #ffffff;
     color: var(--text);
     font-size: 15px;
-    padding: 86px 0 0;
+    padding: 66px 0 0;
     border-top: 1px solid var(--border);
 }
 
@@ -670,7 +671,7 @@ textarea,
 }
 
 .footer-16 .brand-section .footer-brand-logo {
-    height: 104px;
+    height: 120px;
     width: auto;
     max-width: min(100%, 320px);
     display: block;
@@ -711,8 +712,11 @@ textarea,
     font-size: 16px;
     color: var(--header-accent);
     margin-right: 12px;
-    margin-top: 3px;
     flex-shrink: 0;
+}
+.footer-16 .brand-section .contact-info .contact-item i,
+.footer-16 .brand-section .contact-info .contact-item a{
+    line-height: 1;
 }
 
 .footer-16 .brand-section .contact-info .contact-item span {
@@ -773,12 +777,13 @@ textarea,
     content: "\f285";
     font-family: "bootstrap-icons";
     position: absolute;
-    left: -14px;
+    left: -16px;
     top: 50%;
     transform: translateY(-50%) translateX(-6px);
     opacity: 0;
     color: var(--header-accent);
     transition: opacity 0.22s ease, transform 0.22s ease;
+    line-height: 1;
 }
 
 .footer-16 .nav-column .footer-nav a:hover {
