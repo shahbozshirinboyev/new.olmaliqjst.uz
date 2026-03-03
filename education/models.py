@@ -7,6 +7,7 @@ class EducationDirection(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     description = models.TextField()
+    image = models.ImageField(upload_to='education/directions/', blank=True, null=True)
     duration_years = models.PositiveSmallIntegerField(default=2)
     departments = models.ManyToManyField(Department, related_name='education_directions', blank=True)
     is_active = models.BooleanField(default=True)

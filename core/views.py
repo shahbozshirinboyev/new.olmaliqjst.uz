@@ -1,16 +1,21 @@
 from django.shortcuts import render
 
+from education.models import EducationDirection
 from news.models import News
 
-from .models import About, Document, Leadership, MaterialBase
+from .models import About, Announcement, Document, Leadership, MaterialBase, TechStat
 
 
 def home(request):
-    latest_news = News.objects.filter(is_published=True)[:3]
-    leaders = Leadership.objects.all()[:3]
+    latest_news = News.objects.filter(is_published=True)[:6]
+    directions = EducationDirection.objects.filter(is_active=True)
+    tech_stats = TechStat.objects.filter(is_active=True)
+    announcements = Announcement.objects.filter(is_active=True).order_by('-published_at', '-created_at')[:4]
     context = {
         'latest_news': latest_news,
-        'leaders': leaders,
+        'directions': directions,
+        'tech_stats': tech_stats,
+        'announcements': announcements,
     }
     return render(request, 'core/home.html', context)
 

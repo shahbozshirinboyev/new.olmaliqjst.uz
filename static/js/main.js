@@ -86,7 +86,6 @@ function initGsapAnimations() {
 
     if (cards.length) {
         window.gsap.from(cards, {
-            y: 22,
             opacity: 0,
             duration: 0.5,
             stagger: 0.08,
@@ -97,7 +96,6 @@ function initGsapAnimations() {
 
     if (footerBlocks.length) {
         window.gsap.from(footerBlocks, {
-            y: 18,
             opacity: 0,
             duration: 0.45,
             stagger: 0.06,

@@ -1,25 +1,26 @@
 {% load static %}
 <header id="header" class="header fixed-top">
+
     <div class="topbar d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center">
-                    <a href="mailto:olmaliqjst@gmail.com">olmaliqjst@gmail.com</a>
+            <div class="contact-info d-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope align-items-center ms-4">
+                    <span>{{ topbar_settings.email }}</span>
                 </i>
-                <i class="bi bi-phone d-flex align-items-center ms-4">
-                    <span>+998 (55) 900-04-99</span>
+                <i class="bi bi-phone align-items-center ms-4">
+                    <span>{{ topbar_settings.phone }}</span>
                 </i>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
-                <a href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
-                <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="{{ topbar_settings.telegram_url }}" target="_blank" rel="noopener" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                <a href="{{ topbar_settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="{{ topbar_settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
             </div>
         </div>
     </div>
 
     <div class="branding d-flex align-items-center">
-        <nav class="navbar navbar-expand-lg site-navbar py-2 w-100">
+        <nav class="navbar navbar-expand-lg  py-2 w-100">
             <div class="container position-relative d-flex align-items-center justify-content-between">
                 <a class="navbar-brand brand d-flex align-items-center gap-2" href="{% url 'core:home' %}">
                     <img class="brand-logo" src="{% static 'images/logo.png' %}" alt="Olmaliq texnikumi logosi">
@@ -70,4 +71,5 @@
             </div>
         </nav>
     </div>
+
 </header>

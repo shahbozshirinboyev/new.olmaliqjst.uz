@@ -5,7 +5,7 @@ from .models import Assessment, EducationDirection, EducationProcess, Practice
 
 @admin.register(EducationDirection)
 class EducationDirectionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'duration_years', 'is_active')
+    list_display = ('name', 'duration_years', 'is_active', 'image')
     list_filter = ('is_active', 'departments')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}

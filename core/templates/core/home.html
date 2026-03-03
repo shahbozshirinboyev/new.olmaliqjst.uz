@@ -1,26 +1,115 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Bosh sahifa{% endblock %}
 {% block content %}
-<section class="hero card">
-    <h1>Olmaliq texnikumiga xush kelibsiz</h1>
-    <p>Ta'lim, hamkorlik va innovatsiyalar markazi.</p>
+
+<section class="hero-fullscreen" style="background-image: url('{% static 'images/hero.webp' %}')">
+    <div class="hero-fullscreen__overlay">
+        <h1>Tibbiyot texnikumi <br> Kelajak kasbi shu yerda</h1>
+        <span class="hero-fullscreen__line"></span>
+    </div>
 </section>
-<section class="grid two-col">
-    <article class="card">
-        <h2>Rahbariyat</h2>
-        {% for leader in leaders %}
-            <p><strong>{{ leader.full_name }}</strong> - {{ leader.position }}</p>
+
+<section class="card home-directions">
+    <div class="home-directions__head">
+        <h2>Texnikum yo'nalishlari</h2>
+        <p>Kartani bosing va barcha yo'nalishlarni ko'ring</p>
+    </div>
+    <div class="home-directions__list">
+        {% for direction in directions %}
+            <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}" style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+                <span class="home-directions__shade"></span>
+                <span class="home-directions__cta">Ko'rish</span>
+                <h3>{{ direction.name }}</h3>
+            </a>
         {% empty %}
-            <p>Ma'lumotlar kiritilmagan.</p>
+            <p>Yo'nalishlar hozircha kiritilmagan.</p>
         {% endfor %}
-    </article>
-    <article class="card">
+    </div>
+</section>
+
+<section class="card home-stats">
+    <div class="home-stats__head">
+        <h2>TEXNIKUM RAQAMLARDA</h2>
+    </div>
+    <div class="home-stats__grid">
+        {% for stat in tech_stats %}
+            <div class="home-stats__item">
+                <div class="home-stats__value">{{ stat.count }}</div>
+                <i class="bi {{ stat.icon }}"></i>
+                <div class="home-stats__label">{{ stat.name }}</div>
+            </div>
+        {% empty %}
+            <p>Raqamlar hozircha kiritilmagan.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="card home-news">
+    <div class="home-news__head">
         <h2>So'nggi yangiliklar</h2>
+    </div>
+    <div class="home-news__grid">
         {% for item in latest_news %}
-            <p><a href="{% url 'news:news_detail' item.slug %}">{{ item.title }}</a></p>
+            <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
+                <div class="home-news__image" style="background-image: url('{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');"></div>
+                <div class="home-news__body">
+                    <h3>{{ item.title }}</h3>
+                    {% if item.excerpt %}
+                        <p>{{ item.excerpt }}</p>
+                    {% else %}
+                        <p>{{ item.content|striptags|truncatechars:90 }}</p>
+                    {% endif %}
+                </div>
+            </a>
         {% empty %}
             <p>Yangiliklar mavjud emas.</p>
         {% endfor %}
-    </article>
+    </div>
 </section>
+
+<section class="card home-virtual-tour">
+    <div class="home-virtual-tour__head">
+        <h2>TIBBIYOT TEXNIKUMIGA VIRTUAL SAYOHAT</h2>
+    </div>
+    <div class="video-container">
+        <iframe
+            class="video-iframe"
+            src="https://www.youtube.com/embed/n_jOwDJZngU?autoplay=1&mute=1&loop=1&playlist=n_jOwDJZngU&controls=0&rel=0&modestbranding=1&playsinline=1"
+            title="YouTube video player"
+            frameborder="0"
+            loading="lazy"
+            referrerpolicy="origin-when-cross-origin"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+    <p class="home-virtual-tour__fallback">
+        Video ko'rinmasa
+        <a href="https://youtu.be/n_jOwDJZngU?si=Gbl1MFZe3gCXyLsW" target="_blank" rel="noopener">YouTube'da oching</a>.
+    </p>
+</section>
+
+<section class="card home-announcements">
+    <div class="home-announcements__head">
+        <h2>E'LONLAR</h2>
+    </div>
+    <div class="home-announcements__grid">
+        {% for announcement in announcements %}
+            <article class="home-announcements__card">
+                <div class="home-announcements__image" style="background-image: url('{% if announcement.image %}{{ announcement.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');"></div>
+                <div class="home-announcements__body">
+                    <h3>{{ announcement.title }}</h3>
+                    {% if announcement.published_at %}
+                        <p class="home-announcements__date"><i class="bi bi-calendar3"></i> {{ announcement.published_at|date:"d.m.Y" }}</p>
+                    {% endif %}
+                    <p>{{ announcement.content|striptags|truncatechars:110 }}</p>
+                </div>
+            </article>
+        {% empty %}
+            <p>E'lonlar mavjud emas.</p>
+        {% endfor %}
+    </div>
+</section>
+
 {% endblock %}

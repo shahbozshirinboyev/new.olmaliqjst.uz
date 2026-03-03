@@ -1,4 +1,4 @@
-from core.models import Menu
+from core.models import Menu, TopbarSettings
 
 
 def menu_context(request):
@@ -7,4 +7,8 @@ def menu_context(request):
         .prefetch_related('children')
         .order_by('order', 'id')
     )
-    return {'menu_items': menu_items}
+    topbar = TopbarSettings.objects.filter(is_active=True).first()
+    return {
+        'menu_items': menu_items,
+        'topbar_settings': topbar,
+    }
