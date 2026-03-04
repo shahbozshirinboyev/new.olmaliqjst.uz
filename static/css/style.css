@@ -20,7 +20,15 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, sans-serif;
-    background: linear-gradient(180deg, var(--secondary-bg) 0%, var(--bg) 45%);
+    background-color: #ffffff;
+    background-image:
+        radial-gradient(1100px circle at 8% 16%, rgba(246, 238, 181, 0.22), transparent 62%),
+        radial-gradient(1250px circle at 92% 12%, rgba(178, 231, 212, 0.2), transparent 64%),
+        radial-gradient(980px circle at 84% 88%, rgba(205, 233, 245, 0.16), transparent 66%),
+        linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+    background-repeat: no-repeat;
+    background-size: 128% 128%, 132% 132%, 126% 126%, 100% 100%;
+    animation: siteBgFloat 50s ease-in-out infinite alternate;
     color: var(--text);
     padding-top: 108px;
     overflow-x: clip;
@@ -936,5 +944,25 @@ textarea,
 
     100% {
         opacity: 0.7;
+    }
+}
+
+@keyframes siteBgFloat {
+    0% {
+        background-position: 8% 16%, 92% 12%, 84% 88%, 0 0;
+    }
+
+    50% {
+        background-position: 11% 14%, 89% 15%, 81% 90%, 0 0;
+    }
+
+    100% {
+        background-position: 9% 17%, 91% 11%, 85% 87%, 0 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
     }
 }
