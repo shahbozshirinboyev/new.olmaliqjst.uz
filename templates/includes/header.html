@@ -34,31 +34,32 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNavbar">
+                    {% with ns=request.resolver_match.namespace name=request.resolver_match.url_name %}
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'core:home' %}">Bosh sahifa</a>
+                            <a class="nav-link {% if ns == 'core' and name == 'home' %}active{% endif %}" href="{% url 'core:home' %}" {% if ns == 'core' and name == 'home' %}aria-current="page"{% endif %}>Bosh sahifa</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ta'lim</a>
+                            <a class="nav-link dropdown-toggle {% if ns == 'education' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% if ns == 'education' %}aria-current="page"{% endif %}>Ta'lim</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'education:directions' %}">Ta'lim yo'nalishlari</a></li>
-                                <li><a class="dropdown-item" href="{% url 'education:departments_list' %}">Kafedralar</a></li>
-                                <li><a class="dropdown-item" href="{% url 'education:process' %}">O'quv jarayoni</a></li>
-                                <li><a class="dropdown-item" href="{% url 'education:assessment' %}">Baholash va nazorat</a></li>
-                                <li><a class="dropdown-item" href="{% url 'education:practice' %}">Amaliyot va bitiruvchilar</a></li>
+                                <li><a class="dropdown-item {% if ns == 'education' and name == 'directions' %}active{% endif %}" href="{% url 'education:directions' %}">Ta'lim yo'nalishlari</a></li>
+                                <li><a class="dropdown-item {% if ns == 'education' and name == 'departments_list' %}active{% endif %}" href="{% url 'education:departments_list' %}">Kafedralar</a></li>
+                                <li><a class="dropdown-item {% if ns == 'education' and name == 'process' %}active{% endif %}" href="{% url 'education:process' %}">O'quv jarayoni</a></li>
+                                <li><a class="dropdown-item {% if ns == 'education' and name == 'assessment' %}active{% endif %}" href="{% url 'education:assessment' %}">Baholash va nazorat</a></li>
+                                <li><a class="dropdown-item {% if ns == 'education' and name == 'practice' %}active{% endif %}" href="{% url 'education:practice' %}">Amaliyot va bitiruvchilar</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Texnikum</a>
+                            <a class="nav-link dropdown-toggle {% if ns == 'core' and name != 'home' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% if ns == 'core' and name != 'home' %}aria-current="page"{% endif %}>Texnikum</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'core:about' %}">Umumiy ma'lumot</a></li>
-                                <li><a class="dropdown-item" href="{% url 'core:leadership' %}">Rahbariyat</a></li>
-                                <li><a class="dropdown-item" href="{% url 'core:material_base' %}">Moddiy texnik baza</a></li>
-                                <li><a class="dropdown-item" href="{% url 'core:documents' %}">Me'yoriy hujjatlar</a></li>
+                                <li><a class="dropdown-item {% if ns == 'core' and name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">Umumiy ma'lumot</a></li>
+                                <li><a class="dropdown-item {% if ns == 'core' and name == 'leadership' %}active{% endif %}" href="{% url 'core:leadership' %}">Rahbariyat</a></li>
+                                <li><a class="dropdown-item {% if ns == 'core' and name == 'material_base' %}active{% endif %}" href="{% url 'core:material_base' %}">Moddiy texnik baza</a></li>
+                                <li><a class="dropdown-item {% if ns == 'core' and name == 'documents' %}active{% endif %}" href="{% url 'core:documents' %}">Me'yoriy hujjatlar</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hamkor tashkilotlar</a>
+                            <a class="nav-link dropdown-toggle {% if ns == 'partners' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% if ns == 'partners' %}aria-current="page"{% endif %}>Hamkor tashkilotlar</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#davlat-tashkilotlari">Davlat tashkilotlari</a></li>
                                 <li><a class="dropdown-item" href="{% url 'partners:partner_list' %}#tibbiyot-muassasalari">Tibbiyot muassasalari</a></li>
@@ -67,9 +68,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact:contact' %}">Aloqa</a>
+                            <a class="nav-link {% if ns == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}" {% if ns == 'contact' %}aria-current="page"{% endif %}>Aloqa</a>
                         </li>
                     </ul>
+                    {% endwith %}
                 </div>
             </div>
         </nav>

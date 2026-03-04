@@ -154,14 +154,93 @@ html {
 
 .navbar .nav-item > a{
     text-transform: uppercase;
+    font-weight: 600;
+}
+
+.navbar .nav-link {
+    position: relative;
+    transition: color 0.22s ease;
+}
+
+.navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.2rem;
+    height: 2px;
+    background: var(--header-accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.22s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--header-accent);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.navbar .dropdown-menu {
+    transform-origin: top center;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    background-color: #ffffff;
 }
 
 @media (min-width: 992px) {
-    .navbar .dropdown:hover > .dropdown-menu,
-    .navbar .dropdown:focus-within > .dropdown-menu {
+    .navbar .dropdown > .dropdown-menu {
         display: block;
+        /* opacity: 0; */
+        visibility: hidden;
+        transform: translateY(10px);
+        pointer-events: none;
         margin-top: 0;
     }
+
+    .navbar .dropdown:hover > .dropdown-menu,
+    .navbar .dropdown:focus-within > .dropdown-menu,
+    .navbar .dropdown > .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar .dropdown-menu.show {
+        animation: dropdownFadeIn 0.2s ease;
+    }
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    transition: all 0.3s ease;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    background: linear-gradient(90deg, #2e2a6b 0%, #2e8b57 55%);
+    color: white;
+}
+
+.navbar .dropdown-menu .dropdown-item.active {
+    background: linear-gradient(90deg, #2e2a6b 0%, #2e8b57 55%);
+    color: #ffffff;
 }
 
 .hero-fullscreen {
