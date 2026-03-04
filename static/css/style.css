@@ -148,7 +148,7 @@ html {
     display: block;
 }
 
-.site-navbar {
+/* .site-navbar {
     background: #ffffff !important;
 }
 
@@ -211,10 +211,14 @@ html {
         display: block;
         margin-top: 0;
     }
-}
+} */
 
 .page-content {
     padding: 30px 0 56px;
+}
+
+.navbar .nav-item > a{
+    text-transform: uppercase;
 }
 
 .hero-fullscreen {
