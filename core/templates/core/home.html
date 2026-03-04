@@ -1,17 +1,21 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Bosh sahifa{% endblock %}
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %}Bosh sahifa{% endblock %} 
+
 {% block content %}
 
 <section class="hero-fullscreen" style="background-image: url('{% static 'images/hero.webp' %}')">
     <div class="hero-fullscreen__overlay">
-        <h1>Tibbiyot texnikumi <br> Kelajak kasbi shu yerda</h1>
+        <h1>
+            Tibbiyot texnikumi <br />
+            Kelajak kasbi shu yerda
+        </h1>
         <span class="hero-fullscreen__line"></span>
     </div>
 </section>
 
-<section class="home-directions border border-danger">
-
+<section>
     <div class="home-directions__head">
         <h2>Texnikum yo'nalishlari</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
@@ -19,22 +23,21 @@
 
     <div class="home-directions__list">
         {% for direction in directions %}
-            <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}" style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
-                <span class="home-directions__shade"></span>
-                <span class="home-directions__cta">
-                    <i class="bi bi-arrow-up-right"></i>
-                </span>
-                <h3>{{ direction.name }}</h3>
-            </a>
+        <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}"
+            style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+            <span class="home-directions__shade"></span>
+            <span class="home-directions__cta">
+                <i class="bi bi-arrow-up-right"></i>
+            </span>
+            <h3>{{ direction.name }}</h3>
+        </a>
         {% empty %}
-            <p>Yo'nalishlar hozircha kiritilmagan.</p>
+        <p>Yo'nalishlar hozircha kiritilmagan.</p>
         {% endfor %}
     </div>
-    
 </section>
 
-<section class="home-stats">
-
+<section>
     <div class="home-directions__head">
         <h2>Texnikum raqamlarda</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
@@ -42,20 +45,18 @@
 
     <div class="home-stats__grid">
         {% for stat in tech_stats %}
-            <div class="home-stats__item">
-                <div class="home-stats__value">{{ stat.count }}</div>
-                <i class="bi {{ stat.icon }}"></i>
-                <div class="home-stats__label">{{ stat.name }}</div>
-            </div>
+        <div class="home-stats__item">
+            <div class="home-stats__value">{{ stat.count }}</div>
+            <i class="bi {{ stat.icon }}"></i>
+            <div class="home-stats__label">{{ stat.name }}</div>
+        </div>
         {% empty %}
-            <p>Raqamlar hozircha kiritilmagan.</p>
+        <p>Raqamlar hozircha kiritilmagan.</p>
         {% endfor %}
     </div>
-
 </section>
 
-<section class="home-news">
-
+<section>
     <div class="home-directions__head">
         <h2>So'nggi yangiliklar</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
@@ -63,41 +64,36 @@
 
     <div class="home-news__grid">
         {% for item in latest_news %}
-            <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
-                <div class="home-news__image" style="background-image: url('{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');"></div>
-                <div class="home-news__body">
-                    <h3>{{ item.title }}</h3>
-                    {% if item.excerpt %}
-                        <p>{{ item.excerpt }}</p>
-                    {% else %}
-                        <p>{{ item.content|striptags|truncatechars:90 }}</p>
-                    {% endif %}
-                </div>
-            </a>
+        <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
+            <div class="home-news__image"
+                style="background-image: url('{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+            </div>
+            <div class="home-news__body">
+                <h3>{{ item.title }}</h3>
+                {% if item.excerpt %}
+                <p>{{ item.excerpt }}</p>
+                {% else %}
+                <p>{{ item.content|striptags|truncatechars:90 }}</p>
+                {% endif %}
+            </div>
+        </a>
         {% empty %}
-            <p>Yangiliklar mavjud emas.</p>
+        <p>Yangiliklar mavjud emas.</p>
         {% endfor %}
     </div>
-
 </section>
 
-<section class="home-virtual-tour">
-
+<section>
     <div class="home-directions__head">
         <h2>TIBBIYOT TEXNIKUMIGA VIRTUAL SAYOHAT</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
 
     <div class="video-container">
-        <iframe
-            class="video-iframe"
+        <iframe class="video-iframe"
             src="https://www.youtube.com/embed/n_jOwDJZngU?autoplay=1&mute=1&loop=1&playlist=n_jOwDJZngU&controls=0&rel=0&modestbranding=1&playsinline=1"
-            title="YouTube video player"
-            frameborder="0"
-            loading="lazy"
-            referrerpolicy="origin-when-cross-origin"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowfullscreen>
+            title="YouTube video player" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen>
         </iframe>
     </div>
     <p class="home-virtual-tour__fallback">
@@ -106,25 +102,30 @@
     </p>
 </section>
 
-<section class="home-announcements">
+<section>
     <div class="home-directions__head">
         <h2>E'lonlar</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
     <div class="home-announcements__grid">
         {% for announcement in announcements %}
-            <article class="home-announcements__card">
-                <div class="home-announcements__image" style="background-image: url('{% if announcement.image %}{{ announcement.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');"></div>
-                <div class="home-announcements__body">
-                    <h3>{{ announcement.title }}</h3>
-                    {% if announcement.published_at %}
-                        <p class="home-announcements__date"><i class="bi bi-calendar3"></i> {{ announcement.published_at|date:"d.m.Y" }}</p>
-                    {% endif %}
-                    <p>{{ announcement.content|striptags|truncatechars:110 }}</p>
-                </div>
-            </article>
+        <article class="home-announcements__card">
+            <div class="home-announcements__image"
+                style="background-image: url('{% if announcement.image %}{{ announcement.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+            </div>
+            <div class="home-announcements__body">
+                <h3>{{ announcement.title }}</h3>
+                {% if announcement.published_at %}
+                <p class="home-announcements__date">
+                    <i class="bi bi-calendar3"></i> {{
+                    announcement.published_at|date:"d.m.Y" }}
+                </p>
+                {% endif %}
+                <p>{{ announcement.content|striptags|truncatechars:110 }}</p>
+            </div>
+        </article>
         {% empty %}
-            <p>E'lonlar mavjud emas.</p>
+        <p>E'lonlar mavjud emas.</p>
         {% endfor %}
     </div>
 </section>
