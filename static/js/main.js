@@ -51,38 +51,11 @@ function toggleScrolled() {
     }
 }
 
-function initAos() {
-    if (!window.AOS) return;
-
-    window.AOS.init({
-        duration: 600,
-        easing: "ease-in-out",
-        once: true,
-        mirror: false,
-    });
-}
-
 function initGsapAnimations() {
     if (!window.gsap) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const cards = document.querySelectorAll(".page-content .card");
-    const footerBlocks = document.querySelectorAll(".footer-16 .brand-section, .footer-16 .nav-column");
-
-    window.gsap.from("#header .topbar", {
-        y: -18,
-        opacity: 0,
-        duration: 0.45,
-        ease: "power2.out",
-    });
-
-    window.gsap.from("#header .branding", {
-        y: -12,
-        opacity: 0,
-        duration: 0.45,
-        delay: 0.08,
-        ease: "power2.out",
-    });
 
     if (cards.length) {
         window.gsap.from(cards, {
@@ -93,23 +66,12 @@ function initGsapAnimations() {
             ease: "power2.out",
         });
     }
-
-    if (footerBlocks.length) {
-        window.gsap.from(footerBlocks, {
-            opacity: 0,
-            duration: 0.45,
-            stagger: 0.06,
-            delay: 0.2,
-            ease: "power2.out",
-        });
-    }
 }
 
 window.addEventListener("pageshow", hideLoader);
 window.addEventListener("load", () => {
     hideLoader();
     toggleScrolled();
-    initAos();
 });
 
 window.addEventListener("DOMContentLoaded", initGsapAnimations);
