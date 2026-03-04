@@ -10,16 +10,18 @@
     </div>
 </section>
 
-<section class="card home-directions">
+<section class="home-directions">
     <div class="home-directions__head">
         <h2>Texnikum yo'nalishlari</h2>
-        <p>Kartani bosing va barcha yo'nalishlarni ko'ring</p>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
     <div class="home-directions__list">
         {% for direction in directions %}
             <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}" style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
                 <span class="home-directions__shade"></span>
-                <span class="home-directions__cta">Ko'rish</span>
+                <span class="home-directions__cta">
+                    <i class="bi bi-arrow-up-right"></i>
+                </span>
                 <h3>{{ direction.name }}</h3>
             </a>
         {% empty %}
