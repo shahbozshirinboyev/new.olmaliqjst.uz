@@ -3,7 +3,7 @@
         padding-top: 96px;
     }
 
-    .navbar .nav-link::after{
+    .navbar .nav-link::before{
         left: 0rem;
     }
 

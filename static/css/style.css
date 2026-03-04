@@ -162,7 +162,7 @@ html {
     transition: color 0.22s ease;
 }
 
-.navbar .nav-link::after {
+.navbar .nav-link::before {
     content: "";
     position: absolute;
     left: 0.5rem;
@@ -180,8 +180,8 @@ html {
     color: var(--header-accent);
 }
 
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after {
+.navbar .nav-link:hover::before,
+.navbar .nav-link.active::before {
     transform: scaleX(1);
 }
 
