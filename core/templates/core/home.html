@@ -10,11 +10,13 @@
     </div>
 </section>
 
-<section class="home-directions">
+<section class="home-directions border border-danger">
+
     <div class="home-directions__head">
         <h2>Texnikum yo'nalishlari</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
+
     <div class="home-directions__list">
         {% for direction in directions %}
             <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}" style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
@@ -28,12 +30,16 @@
             <p>Yo'nalishlar hozircha kiritilmagan.</p>
         {% endfor %}
     </div>
+    
 </section>
 
-<section class="card home-stats">
-    <div class="home-stats__head">
-        <h2>TEXNIKUM RAQAMLARDA</h2>
+<section class="home-stats">
+
+    <div class="home-directions__head">
+        <h2>Texnikum raqamlarda</h2>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
+
     <div class="home-stats__grid">
         {% for stat in tech_stats %}
             <div class="home-stats__item">
@@ -45,12 +51,16 @@
             <p>Raqamlar hozircha kiritilmagan.</p>
         {% endfor %}
     </div>
+
 </section>
 
-<section class="card home-news">
-    <div class="home-news__head">
+<section class="home-news">
+
+    <div class="home-directions__head">
         <h2>So'nggi yangiliklar</h2>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
+
     <div class="home-news__grid">
         {% for item in latest_news %}
             <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
@@ -68,12 +78,16 @@
             <p>Yangiliklar mavjud emas.</p>
         {% endfor %}
     </div>
+
 </section>
 
-<section class="card home-virtual-tour">
-    <div class="home-virtual-tour__head">
+<section class="home-virtual-tour">
+
+    <div class="home-directions__head">
         <h2>TIBBIYOT TEXNIKUMIGA VIRTUAL SAYOHAT</h2>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
+
     <div class="video-container">
         <iframe
             class="video-iframe"
@@ -92,9 +106,10 @@
     </p>
 </section>
 
-<section class="card home-announcements">
-    <div class="home-announcements__head">
-        <h2>E'LONLAR</h2>
+<section class="home-announcements">
+    <div class="home-directions__head">
+        <h2>E'lonlar</h2>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
     <div class="home-announcements__grid">
         {% for announcement in announcements %}
