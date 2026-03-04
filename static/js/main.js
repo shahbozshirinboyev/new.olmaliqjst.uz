@@ -1,8 +1,26 @@
-﻿const pageLoader = document.getElementById("page-loader");
-const MIN_LOADER_MS = 550;
+const pageLoader = document.getElementById("page-loader");
+const MIN_LOADER_MS = 500;
 const FADE_OUT_MS = 260;
+const LOADER_TS_KEY = "page_loader_shown_at";
 let shownAt = 0;
 let hideTimer = null;
+
+function getStoredShownAt() {
+    const raw = sessionStorage.getItem(LOADER_TS_KEY);
+    const value = Number(raw);
+    return Number.isFinite(value) && value > 0 ? value : 0;
+}
+
+function clearLoaderState() {
+    shownAt = 0;
+    sessionStorage.removeItem(LOADER_TS_KEY);
+}
+
+function ensureVisibleLoader() {
+    if (!pageLoader) return;
+    pageLoader.classList.remove("d-none");
+    requestAnimationFrame(() => pageLoader.classList.add("is-visible"));
+}
 
 function showLoader() {
     if (!pageLoader) return;
@@ -13,20 +31,31 @@ function showLoader() {
     }
 
     shownAt = Date.now();
-    pageLoader.classList.remove("d-none");
-    requestAnimationFrame(() => pageLoader.classList.add("is-visible"));
+    sessionStorage.setItem(LOADER_TS_KEY, String(shownAt));
+    ensureVisibleLoader();
 }
 
 function hideLoader() {
     if (!pageLoader) return;
 
-    const elapsed = Date.now() - shownAt;
+    const startAt = shownAt || getStoredShownAt();
+    if (!startAt) {
+        pageLoader.classList.remove("is-visible");
+        pageLoader.classList.add("d-none");
+        return;
+    }
+
+    shownAt = startAt;
+    ensureVisibleLoader();
+
+    const elapsed = Date.now() - startAt;
     const wait = Math.max(0, MIN_LOADER_MS - elapsed);
 
     hideTimer = setTimeout(() => {
         pageLoader.classList.remove("is-visible");
         setTimeout(() => {
             pageLoader.classList.add("d-none");
+            clearLoaderState();
         }, FADE_OUT_MS);
     }, wait);
 }
