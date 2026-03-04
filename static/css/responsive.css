@@ -91,17 +91,6 @@
         max-width: 160px;
     }
 
-    .site-navbar .navbar-toggler {
-        padding: 0.2rem 0.45rem;
-    }
-
-    .site-navbar .dropdown-menu {
-        border: 0;
-        box-shadow: none;
-        padding-left: 12px;
-        background: var(--secondary-bg);
-    }
-
     .footer-16 {
         padding-top: 72px;
     }
