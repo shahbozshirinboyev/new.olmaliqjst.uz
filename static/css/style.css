@@ -156,6 +156,14 @@ html {
     text-transform: uppercase;
 }
 
+@media (min-width: 992px) {
+    .navbar .dropdown:hover > .dropdown-menu,
+    .navbar .dropdown:focus-within > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
 .hero-fullscreen {
     width: 100dvw;
     max-width: 100dvw;
