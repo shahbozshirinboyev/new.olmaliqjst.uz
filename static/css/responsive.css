@@ -3,6 +3,10 @@
         padding-top: 96px;
     }
 
+    .navbar .nav-link::after{
+        left: 0rem;
+    }
+
     .grid.two-col {
         grid-template-columns: 1fr;
     }
@@ -124,6 +128,8 @@
     /* .header .topbar {
         display: none;
     } */
+
+
 
     .header .branding {
         min-height: 62px;
