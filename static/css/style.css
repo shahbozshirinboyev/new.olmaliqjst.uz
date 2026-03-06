@@ -492,7 +492,7 @@ html {
 .home-stats__item {
     text-align: center;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    /* border-radius: 12px; */
     padding: 16px 8px;
     background: #ffffff;
 }

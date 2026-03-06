@@ -1,7 +1,7 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Bosh sahifa{% endblock %} 
+{% block title %}Bosh sahifa{% endblock %}
 
 {% block content %}
 
@@ -46,8 +46,8 @@
     <div class="home-stats__grid">
         {% for stat in tech_stats %}
         <div class="home-stats__item">
-            <div class="home-stats__value">{{ stat.count }}</div>
             <i class="bi {{ stat.icon }}"></i>
+            <div class="home-stats__value">{{ stat.count }}</div>
             <div class="home-stats__label">{{ stat.name }}</div>
         </div>
         {% empty %}
