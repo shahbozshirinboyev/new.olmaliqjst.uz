@@ -485,37 +485,106 @@ html {
 
 .home-stats__grid {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
 }
 
 .home-stats__item {
-    text-align: center;
-    border: 1px solid var(--border);
-    /* border-radius: 12px; */
-    padding: 16px 8px;
-    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 6px;
+}
+
+.home-stats__icon {
+    width: 84px;
+    height: 84px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    background: #f4ebe6;
+}
+
+.home-stats__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
 }
 
 .home-stats__value {
-    font-size: clamp(24px, 2.4vw, 34px);
+    font-size: clamp(28px, 3.1vw, 35px);
     line-height: 1;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: #0f172a;
+    font-weight: 900;
+    color: #0b1220;
 }
 
-.home-stats__item i {
-    display: inline-block;
-    font-size: 26px;
-    margin-bottom: 8px;
-    color: #0f172a;
+.home-stats__icon i {
+    font-size: 34px;
+    color: #ff8f45;
+    line-height: 1;
+}
+
+.home-stats__item:nth-child(6n + 1) .home-stats__icon {
+    background: #fef1e8;
+}
+
+.home-stats__item:nth-child(6n + 1) .home-stats__icon i {
+    color: #ff8f45;
+}
+
+.home-stats__item:nth-child(6n + 2) .home-stats__icon {
+    background: #eaf1ff;
+}
+
+.home-stats__item:nth-child(6n + 2) .home-stats__icon i {
+    color: #468cff;
+}
+
+.home-stats__item:nth-child(6n + 3) .home-stats__icon {
+    background: #e7f7ee;
+}
+
+.home-stats__item:nth-child(6n + 3) .home-stats__icon i {
+    color: #20b464;
+}
+
+.home-stats__item:nth-child(6n + 4) .home-stats__icon {
+    background: #f3ecff;
+}
+
+.home-stats__item:nth-child(6n + 4) .home-stats__icon i {
+    color: #8a5cf6;
+}
+
+.home-stats__item:nth-child(6n + 5) .home-stats__icon {
+    background: #fff4dc;
+}
+
+.home-stats__item:nth-child(6n + 5) .home-stats__icon i {
+    color: #e0a307;
+}
+
+.home-stats__item:nth-child(6n) .home-stats__icon {
+    background: #e8f8f8;
+}
+
+.home-stats__item:nth-child(6n) .home-stats__icon i {
+    color: #0f9fa8;
 }
 
 .home-stats__label {
-    font-size: 18px;
-    color: #1f2937;
-    font-weight: 500;
+    font-size: clamp(16px, 1.25vw, 20px);
+    color: #4b5563;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.home-stats__empty {
+    margin: 0;
+    color: var(--muted);
 }
 
 .home-directions {

@@ -18,7 +18,7 @@
 <section>
     <div class="home-directions__head">
         <h2>Texnikum yo'nalishlari</h2>
-        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
+        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing</p>
     </div>
 
     <div class="home-directions__list">
@@ -40,18 +40,22 @@
 <section>
     <div class="home-directions__head">
         <h2>Texnikum raqamlarda</h2>
-        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
+        <p>Texnikumning ba'zi statistika ma'lumotlari</p>
     </div>
 
     <div class="home-stats__grid">
         {% for stat in tech_stats %}
         <div class="home-stats__item">
-            <i class="bi {{ stat.icon }}"></i>
-            <div class="home-stats__value">{{ stat.count }}</div>
-            <div class="home-stats__label">{{ stat.name }}</div>
+            <div class="home-stats__icon">
+                <i class="bi {{ stat.icon }}"></i>
+            </div>
+            <div class="home-stats__content">
+                <div class="home-stats__value">{{ stat.count }}</div>
+                <div class="home-stats__label">{{ stat.name }}</div>
+            </div>
         </div>
         {% empty %}
-        <p>Raqamlar hozircha kiritilmagan.</p>
+        <p class="home-stats__empty">Raqamlar hozircha kiritilmagan.</p>
         {% endfor %}
     </div>
 </section>
