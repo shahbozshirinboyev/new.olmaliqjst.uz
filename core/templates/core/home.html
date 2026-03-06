@@ -30,6 +30,9 @@
                 <i class="bi bi-arrow-up-right"></i>
             </span>
             <h3>{{ direction.name }}</h3>
+            {% if direction.description %}
+            <p class="home-directions__desc">{{ direction.description|truncatechars:95 }}</p>
+            {% endif %}
         </a>
         {% empty %}
         <p>Yo'nalishlar hozircha kiritilmagan.</p>

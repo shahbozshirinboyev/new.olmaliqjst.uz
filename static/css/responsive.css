@@ -54,15 +54,20 @@
     }
 
     .home-directions__list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+    }
+
+    .home-directions__list > .home-directions__item {
+        flex-basis: calc((100% - 25px) / 2);
+        max-width: calc((100% - 25px) / 2);
     }
 
     .home-directions__item--photo {
-        min-height: 180px;
+        min-height: 210px;
     }
 
     .home-directions__item--photo h3 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .home-directions__head p {
@@ -253,11 +258,16 @@
     }
 
     .home-directions__list {
-        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .home-directions__list > .home-directions__item {
+        flex-basis: 100%;
+        max-width: 100%;
     }
 
     .home-directions__item--photo {
-        min-height: 170px;
+        min-height: 200px;
     }
 
     .home-directions__item--photo h3 {

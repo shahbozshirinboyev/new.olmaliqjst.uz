@@ -597,7 +597,7 @@ html {
     justify-content: center;
     text-align: center;
     gap: 12px;
-    margin: 50px 0px 30px 0px;
+    margin: 70px 0px 35px 0px;
 }
 
 .home-directions__head h2 {
@@ -614,10 +614,15 @@ html {
 }
 
 .home-directions__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
+}
+
+.home-directions__list > .home-directions__item {
+    flex: 0 1 calc((100% - 50px) / 3);
+    max-width: calc((100% - 50px) / 3);
 }
 
 .home-directions__item {
@@ -639,21 +644,21 @@ html {
 
 .home-directions__item--photo {
     position: relative;
-    min-height: 210px;
+    min-height: 240px;
     padding: 16px;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
     text-decoration: none;
     color: #ffffff;
     background-size: cover;
     background-position: center;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(9, 26, 49, 0.14);
-    transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
 }
 
 .home-directions__item--photo:hover {
-    transform: translateY(-4px);
     box-shadow: 0 16px 36px rgba(9, 26, 49, 0.24);
     filter: saturate(1.1);
 }
@@ -678,6 +683,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.5s ease;
 }
 
 .home-directions__cta i {
@@ -687,12 +693,48 @@ html {
 .home-directions__item--photo h3 {
     position: relative;
     z-index: 1;
-    margin: 0;
-    font-size: 34px;
+    width: 100%;
+    margin: 0 0 8px;
+    font-size: 24px;
     line-height: 1.08;
-    font-weight: 400;
+    font-weight: 600;
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    text-transform: uppercase;
+}
+
+.home-directions__desc {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    max-height: 0px;
+    opacity: 0;
+    transform: translateY(8px);
+    overflow: hidden;
+    color: #fffffff3 !important;
+    font-size: 14px;
+    line-height: 1.35;
+    transition: opacity 0.24s ease, transform 0.24s ease, max-height 0.24s ease;
+}
+
+.home-directions__item--photo:hover .home-directions__desc,
+.home-directions__item--photo:focus-visible .home-directions__desc {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 120px;
+}
+.home-directions__item--photo:hover .home-directions__cta{
+    background-color: white;
+    color: #000;
+}
+
+@media (hover: none) {
+    .home-directions__desc {
+        opacity: 1;
+        transform: none;
+        max-height: 90px;
+    }
 }
 
 .card {
