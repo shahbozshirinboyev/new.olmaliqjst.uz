@@ -22,6 +22,18 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .home-news__image {
+        height: 210px;
+    }
+
+    .home-news__body h3 {
+        font-size: clamp(16px, 1vw, 18px);
+    }
+
+    .home-news__excerpt {
+        font-size: 14px;
+    }
+
     .home-announcements__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -233,6 +245,22 @@
 
     .home-news__grid {
         grid-template-columns: 1fr;
+    }
+
+    .home-news__image {
+        height: 180px;
+    }
+
+    .home-news__meta {
+        font-size: 13px;
+    }
+
+    .home-news__body h3 {
+        font-size: clamp(14px, 1vw, 16px);
+    }
+
+    .home-news__excerpt {
+        font-size: 13px;
     }
 
     .home-announcements__grid {

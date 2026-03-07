@@ -7,7 +7,7 @@
         <div class="item">
             <h3><a href="{% url 'news:news_detail' item.slug %}">{{ item.title }}</a></h3>
             <p>{{ item.excerpt }}</p>
-            <small>{{ item.published_at }}</small>
+            <small>{{ item.published_at }} | Ko'rishlar: {{ item.views_count }}</small>
         </div>
     {% empty %}
         <p>Yangiliklar mavjud emas.</p>

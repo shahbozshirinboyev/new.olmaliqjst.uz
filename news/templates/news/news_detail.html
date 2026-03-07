@@ -3,7 +3,7 @@
 {% block content %}
 <section class="card">
     <h1>{{ news.title }}</h1>
-    <p><small>{{ news.published_at }}</small></p>
+    <p><small>{{ news.published_at }} | Ko'rishlar: {{ news.views_count }}</small></p>
     <p>{{ news.content|linebreaks }}</p>
 </section>
 {% endblock %}

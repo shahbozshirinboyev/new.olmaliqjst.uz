@@ -10,6 +10,7 @@ class News(models.Model):
     image = models.ImageField(upload_to='news/', blank=True, null=True)
     published_at = models.DateTimeField(default=timezone.now)
     is_published = models.BooleanField(default=True)
+    views_count = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

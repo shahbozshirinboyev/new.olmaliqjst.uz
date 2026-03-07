@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="hero-fullscreen" style="background-image: url('{% static 'images/hero.webp' %}')">
+<section class="hero-fullscreen" style="background-image: url('{% static "images/hero.webp" %}')">
     <div class="hero-fullscreen__overlay">
         <h1>
             Tibbiyot texnikumi <br />
@@ -24,7 +24,11 @@
     <div class="home-directions__list">
         {% for direction in directions %}
         <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}"
-            style="background-image: url('{% if direction.image %}{{ direction.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+            {% if direction.image %}
+            style="background-image: url('{{ direction.image.url }}')"
+            {% else %}
+            style="background-image: url('{% static "images/hero.webp" %}')"
+            {% endif %}>
             <span class="home-directions__shade"></span>
             <span class="home-directions__cta">
                 <i class="bi bi-arrow-up-right"></i>
@@ -63,7 +67,8 @@
     </div>
 </section>
 
-<section>
+<section class="border border-danger">
+
     <div class="home-directions__head">
         <h2>So'nggi yangiliklar</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
@@ -73,21 +78,36 @@
         {% for item in latest_news %}
         <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
             <div class="home-news__image"
-                style="background-image: url('{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+                {% if item.image %}
+                style="background-image: url('{{ item.image.url }}')"
+                {% else %}
+                style="background-image: url('{% static "images/hero.webp" %}')"
+                {% endif %}>
             </div>
             <div class="home-news__body">
+                <div class="home-news__meta d-flex justify-content-between">
+                    <div>
+                        <i class="bi bi-calendar3"></i>
+                        <span>{{ item.published_at|date:"d.m.Y / H:i" }}</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-eye"></i>
+                        <span>{{ item.views_count }}</span>
+                    </div>
+                </div>
                 <h3>{{ item.title }}</h3>
-                {% if item.excerpt %}
-                <p>{{ item.excerpt }}</p>
-                {% else %}
-                <p>{{ item.content|striptags|truncatechars:90 }}</p>
-                {% endif %}
+                <p class="home-news__excerpt">{{ item.content|striptags|truncatechars:140 }}</p>
             </div>
         </a>
         {% empty %}
         <p>Yangiliklar mavjud emas.</p>
         {% endfor %}
     </div>
+
+    <div class="home-news__footer">
+        <a class="home-news__all-link" href="{% url 'news:news_list' %}">Barcha yangiliklarni ko'rish</a>
+    </div>
+
 </section>
 
 <section>
@@ -118,7 +138,11 @@
         {% for announcement in announcements %}
         <article class="home-announcements__card">
             <div class="home-announcements__image"
-                style="background-image: url('{% if announcement.image %}{{ announcement.image.url }}{% else %}{% static 'images/hero.webp' %}{% endif %}');">
+                {% if announcement.image %}
+                style="background-image: url('{{ announcement.image.url }}')"
+                {% else %}
+                style="background-image: url('{% static "images/hero.webp" %}')"
+                {% endif %}>
             </div>
             <div class="home-announcements__body">
                 <h3>{{ announcement.title }}</h3>

@@ -7,7 +7,7 @@ from .models import About, Announcement, Document, Leadership, MaterialBase, Tec
 
 
 def home(request):
-    latest_news = News.objects.filter(is_published=True)[:6]
+    latest_news = News.objects.filter(is_published=True)[:3]
     directions = EducationDirection.objects.filter(is_active=True)
     tech_stats = TechStat.objects.filter(is_active=True)
     announcements = Announcement.objects.filter(is_active=True).order_by('-published_at', '-created_at')[:4]
