@@ -440,7 +440,7 @@ html {
 }
 
 .home-announcements__head {
-    text-align: center;
+    text-align: right;
     margin-bottom: 14px;
 }
 
@@ -457,21 +457,30 @@ html {
 }
 
 .home-announcements__card {
+    display: block;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     background: #ffffff;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-announcements__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 .home-announcements__image {
-    height: 120px;
+    height: 180px;
     background-size: cover;
     background-position: center;
 }
 
 .home-announcements__body {
     padding: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .home-announcements__body h3 {

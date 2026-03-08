@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from education.models import EducationDirection
 from news.models import News
@@ -38,3 +38,13 @@ def material_base(request):
 def documents(request):
     docs = Document.objects.all()
     return render(request, 'core/documents.html', {'documents': docs})
+
+
+def announcements_list(request):
+    announcements = Announcement.objects.filter(is_active=True).order_by('-published_at', '-created_at')
+    return render(request, 'core/announcement_list.html', {'announcements': announcements})
+
+
+def announcement_detail(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk, is_active=True)
+    return render(request, 'core/announcement_detail.html', {'announcement': announcement})

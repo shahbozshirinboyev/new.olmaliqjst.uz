@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ announcement.title }}{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h1>{{ announcement.title }}</h1>
+    <p><small>{{ announcement.published_at|date:"d.m.Y" }}</small></p>
+    <p>{{ announcement.content|linebreaks }}</p>
+</section>
+{% endblock %}

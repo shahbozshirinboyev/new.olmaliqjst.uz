@@ -38,6 +38,11 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .home-announcements__image {
+        height: 160px;
+    }
+
+
     .home-virtual-tour__head h2 {
         font-size: clamp(22px, 3.4vw, 30px);
     }
@@ -268,7 +273,7 @@
     }
 
     .home-announcements__image {
-        height: 170px;
+        height: 140px;
     }
 
     .home-virtual-tour {

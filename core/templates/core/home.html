@@ -67,7 +67,7 @@
     </div>
 </section>
 
-<section class="border border-danger">
+<section>
 
     <div class="home-directions__head">
         <h2>So'nggi yangiliklar</h2>
@@ -136,7 +136,7 @@
     </div>
     <div class="home-announcements__grid">
         {% for announcement in announcements %}
-        <article class="home-announcements__card">
+        <a class="home-announcements__card" href="{% url 'core:announcement_detail' announcement.pk %}">
             <div class="home-announcements__image"
                 {% if announcement.image %}
                 style="background-image: url('{{ announcement.image.url }}')"
@@ -145,19 +145,20 @@
                 {% endif %}>
             </div>
             <div class="home-announcements__body">
+                <div class="home-announcements__date">
+                    <i class="bi bi-calendar3"></i> 
+                    <span>{{ announcement.published_at|date:"d.m.Y" }}</span>
+                </div>
                 <h3>{{ announcement.title }}</h3>
-                {% if announcement.published_at %}
-                <p class="home-announcements__date">
-                    <i class="bi bi-calendar3"></i> {{
-                    announcement.published_at|date:"d.m.Y" }}
-                </p>
-                {% endif %}
                 <p>{{ announcement.content|striptags|truncatechars:110 }}</p>
             </div>
-        </article>
+        </a>
         {% empty %}
         <p>E'lonlar mavjud emas.</p>
         {% endfor %}
+    </div>
+    <div class="home-news__footer">
+        <a class="home-news__all-link" href="{% url 'core:announcements_list' %}">Barcha e'lonlarni ko'rish</a>
     </div>
 </section>
 
