@@ -9,6 +9,7 @@
     --nav-text: #2e2a6b;
     --primary-hover: #1f6f45;
     --secondary-bg: #dce3ea;
+    --footer-bg: #f6f9fc;
     --brand-gradient: linear-gradient(90deg, #2e2a6b 0%, #2e8b57 85%);
     --soft-shadow: rgba(46, 42, 107, 0.15);
 }
@@ -112,8 +113,6 @@ html {
 
 .header .branding {
     min-height: 68px;
-    /* background: #ee0000 !important; */
-    /* box-shadow: none !important; */
     transition: all 0.4s ease;
     border: 0 !important;
     border-top: 0 !important;
@@ -849,7 +848,9 @@ textarea,
 }
 
 .footer-16 {
-    background: #ffffff;
+    background:
+        linear-gradient(180deg, rgba(46, 139, 87, 0.035) 0%, rgba(46, 42, 107, 0.03) 100%),
+        var(--footer-bg);
     color: var(--text);
     font-size: 15px;
     padding: 66px 0 0;
