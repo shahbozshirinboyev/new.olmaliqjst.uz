@@ -50,7 +50,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {% if ns == 'core' and name != 'home' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% if ns == 'core' and name != 'home' %}aria-current="page"{% endif %}>Texnikum</a>
+                            <a class="nav-link dropdown-toggle {% if ns == 'core' and name == 'about' or ns == 'core' and name == 'leadership' or ns == 'core' and name == 'material_base' or ns == 'core' and name == 'documents' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% if ns == 'core' and name == 'about' or ns == 'core' and name == 'leadership' or ns == 'core' and name == 'material_base' or ns == 'core' and name == 'documents' %}aria-current="page"{% endif %}>Texnikum</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item {% if ns == 'core' and name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">Umumiy ma'lumot</a></li>
                                 <li><a class="dropdown-item {% if ns == 'core' and name == 'leadership' %}active{% endif %}" href="{% url 'core:leadership' %}">Rahbariyat</a></li>

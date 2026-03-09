@@ -1,16 +1,55 @@
 {% extends 'base.html' %}
+
 {% block title %}Yangiliklar{% endblock %}
+
 {% block content %}
-<section class="card">
-    <h1>Yangiliklar</h1>
-    {% for item in news_items %}
-        <div class="item">
-            <h3><a href="{% url 'news:news_detail' item.slug %}">{{ item.title }}</a></h3>
-            <p>{{ item.excerpt }}</p>
-            <small>{{ item.published_at }} | Ko'rishlar: {{ item.views_count }}</small>
+<section>
+
+    <div class="news-list-directions__head">
+        <h2>Yangiliklar</h2>
+        <p>Texnikum hayotidagi so'nggi yangiliklar, tadbirlar va muhim voqealar haqida eng yangi ma'lumotlarni kuzatib boring!</p>
+    </div>
+
+    <div class="news-list-grid js-load-more-list" data-batch-size="10">
+        {% for item in news_items %}
+            <a class="news-list-card js-load-item" href="{% url 'news:news_detail' item.slug %}">
+                {% if item.image %}
+                    <img class="news-list-card__image" src="{{ item.image.url }}" alt="{{ item.title }}">
+                {% else %}
+                    <div class="news-list-card__image news-list-card__image--empty">
+                        <span>Rasm mavjud emas</span>
+                    </div>
+                {% endif %}
+
+                <div class="news-list-card__body">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.excerpt|default:item.content|striptags|truncatechars:170 }}</p>
+                    <div class="news-list-card__meta">
+                        <span>
+                            <i class="bi bi-calendar3"></i>
+                            <span>{{ item.published_at|date:"d.m.Y / H:i" }}</span>
+                        </span>
+                        <span>|</span>
+                        <span>
+                            <i class="bi bi-eye"></i>
+                            <span>{{ item.views_count }}</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p class="news-list-empty">Yangiliklar mavjud emas.</p>
+        {% endfor %}
+    </div>
+
+    {% if news_items %}
+        <div class="list-load-more-wrap">
+            <button type="button" class="list-load-more-btn js-load-more-btn" data-target=".js-load-more-list" data-more-label="Ko'proq yangiliklar">
+                <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+                <span>Ko'proq yangiliklar</span>
+            </button>
         </div>
-    {% empty %}
-        <p>Yangiliklar mavjud emas.</p>
-    {% endfor %}
+    {% endif %}
+
 </section>
 {% endblock %}

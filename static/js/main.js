@@ -97,13 +97,47 @@ function initGsapAnimations() {
     }
 }
 
+function initLoadMoreLists() {
+    const buttons = document.querySelectorAll(".js-load-more-btn");
+
+    buttons.forEach((button) => {
+        const section = button.closest("section") || document;
+        const target = button.dataset.target || ".js-load-more-list";
+        const list = section.querySelector(target);
+
+        if (!list) return;
+
+        const items = Array.from(list.querySelectorAll(".js-load-item"));
+        const batchSize = Number(list.dataset.batchSize) || 10;
+        let visibleCount = Math.min(batchSize, items.length);
+
+        const sync = () => {
+            items.forEach((item, index) => {
+                item.hidden = index >= visibleCount;
+            });
+
+            button.hidden = visibleCount >= items.length;
+        };
+
+        sync();
+
+        button.addEventListener("click", () => {
+            visibleCount = Math.min(visibleCount + batchSize, items.length);
+            sync();
+        });
+    });
+}
+
 window.addEventListener("pageshow", hideLoader);
 window.addEventListener("load", () => {
     hideLoader();
     toggleScrolled();
 });
 
-window.addEventListener("DOMContentLoaded", initGsapAnimations);
+window.addEventListener("DOMContentLoaded", () => {
+    initGsapAnimations();
+    initLoadMoreLists();
+});
 document.addEventListener("scroll", toggleScrolled);
 
 // Internal linksda page loader ko'rsatish
