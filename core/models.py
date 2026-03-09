@@ -116,7 +116,9 @@ class Announcement(models.Model):
     title = models.CharField(max_length=220)
     content = models.TextField()
     image = models.ImageField(upload_to='announcements/', blank=True, null=True)
-    published_at = models.DateField(default=timezone.localdate)
+    author = models.CharField("Tayyorlagan", max_length=150, blank=False)
+    published_at = models.DateTimeField(default=timezone.now)
+    views_count = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

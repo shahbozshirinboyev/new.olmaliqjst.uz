@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import get_object_or_404, render
 
 from education.models import EducationDirection
@@ -10,7 +11,7 @@ def home(request):
     latest_news = News.objects.filter(is_published=True)[:3]
     directions = EducationDirection.objects.filter(is_active=True)
     tech_stats = TechStat.objects.filter(is_active=True)
-    announcements = Announcement.objects.filter(is_active=True).order_by('-published_at', '-created_at')[:4]
+    announcements = Announcement.objects.filter(is_active=True).order_by('-published_at', '-created_at')[:6]
     context = {
         'latest_news': latest_news,
         'directions': directions,
@@ -47,4 +48,6 @@ def announcements_list(request):
 
 def announcement_detail(request, pk):
     announcement = get_object_or_404(Announcement, pk=pk, is_active=True)
+    Announcement.objects.filter(pk=announcement.pk).update(views_count=F('views_count') + 1)
+    announcement.refresh_from_db(fields=['views_count'])
     return render(request, 'core/announcement_detail.html', {'announcement': announcement})

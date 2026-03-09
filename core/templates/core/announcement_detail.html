@@ -5,7 +5,7 @@
 {% block content %}
 <section class="card">
     <h1>{{ announcement.title }}</h1>
-    <p><small>{{ announcement.published_at|date:"d.m.Y" }}</small></p>
+    <p><small>{{ announcement.published_at|date:"d.m.Y / H:i" }} | Ko'rishlar: {{ announcement.views_count }}</small></p>
     <p>{{ announcement.content|linebreaks }}</p>
 </section>
 {% endblock %}

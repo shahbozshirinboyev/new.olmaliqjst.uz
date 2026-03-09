@@ -52,7 +52,7 @@ class TechStatAdmin(admin.ModelAdmin):
 
 @admin.register(Announcement)
 class AnnouncementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_at', 'is_active')
+    list_display = ('title', 'published_at', 'views_count', 'is_active')
     list_filter = ('is_active', 'published_at')
     search_fields = ('title', 'content')
     ordering = ('-published_at', '-created_at')

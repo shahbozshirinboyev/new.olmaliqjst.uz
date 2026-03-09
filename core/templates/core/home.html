@@ -134,23 +134,29 @@
         <h2>E'lonlar</h2>
         <p>Bizda bor yo'nalishlar bilan yaqindan tanishing.</p>
     </div>
-    <div class="home-announcements__grid">
+    <div class="home-news__grid">
         {% for announcement in announcements %}
-        <a class="home-announcements__card" href="{% url 'core:announcement_detail' announcement.pk %}">
-            <div class="home-announcements__image"
+        <a class="home-news__card" href="{% url 'core:announcement_detail' announcement.pk %}">
+            <div class="home-news__image"
                 {% if announcement.image %}
                 style="background-image: url('{{ announcement.image.url }}')"
                 {% else %}
                 style="background-image: url('{% static "images/hero.webp" %}')"
                 {% endif %}>
             </div>
-            <div class="home-announcements__body">
-                <div class="home-announcements__date">
-                    <i class="bi bi-calendar3"></i> 
-                    <span>{{ announcement.published_at|date:"d.m.Y" }}</span>
+            <div class="home-news__body">
+                <div class="home-news__meta d-flex justify-content-between">
+                    <div>
+                        <i class="bi bi-calendar3"></i>
+                        <span>{{ announcement.published_at|date:"d.m.Y / H:i" }}</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-eye"></i>
+                        <span>{{ announcement.views_count }}</span>
+                    </div>
                 </div>
                 <h3>{{ announcement.title }}</h3>
-                <p>{{ announcement.content|striptags|truncatechars:110 }}</p>
+                <p class="home-news__excerpt">{{ announcement.content|striptags|truncatechars:140 }}</p>
             </div>
         </a>
         {% empty %}

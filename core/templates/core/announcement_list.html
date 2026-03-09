@@ -10,7 +10,7 @@
     <div class="item">
         <h3><a href="{% url 'core:announcement_detail' item.pk %}">{{ item.title }}</a></h3>
         <p>{{ item.content|striptags|truncatechars:180 }}</p>
-        <small>{{ item.published_at|date:"d.m.Y" }}</small>
+        <small>{{ item.published_at|date:"d.m.Y / H:i" }} | Ko'rishlar: {{ item.views_count }}</small>
     </div>
     {% empty %}
     <p>E'lonlar mavjud emas.</p>
