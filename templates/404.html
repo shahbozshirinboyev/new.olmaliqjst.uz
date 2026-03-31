@@ -1,8 +1,54 @@
 {% extends 'base.html' %}
 {% block title %}Sahifa topilmadi{% endblock %}
 {% block content %}
-<section class="card">
-    <h1>404 - Sahifa topilmadi</h1>
-    <p>So'ralgan sahifa mavjud emas.</p>
-</section>
+<style>
+    .error-container {
+        /* min-height: 40vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .error-code {
+        font-size: 100px;
+        font-weight: 800;
+        margin: 0;
+        color: #e74c3c;
+        line-height: 1;
+    }
+    .error-msg {
+        font-size: 24px;
+        color: #2c3e50;
+        margin-top: 10px;
+    }
+    .error-desc {
+        color: #7f8c8d;
+        margin-bottom: 30px;
+    }
+    .btn-home {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: background 0.3s ease;
+    }
+    .btn-home:hover {
+        background-color: #2980b9;
+        color: white;
+    }
+</style>
+
+<div class="error-container">
+    <section class="error-card">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-msg">Sahifa topilmadi</h2>
+        <p class="error-desc">
+            Afsuski, siz qidirayotgan sahifa mavjud emas yoki boshqa manzilga ko'chirilgan.
+        </p>
+        <a href="/" class="btn-home"><i class="fas fa-home"></i> Bosh sahifaga </a>
+    </section>
+</div>
 {% endblock %}
