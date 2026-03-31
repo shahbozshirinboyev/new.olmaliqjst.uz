@@ -1,7 +1,10 @@
+import re
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from django.views.static import serve as static_serve
 
 admin.site.site_header = "Texnikum boshqaruv paneli"
 admin.site.site_title = "Texnikum Admin"
@@ -21,5 +24,15 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Useful for local/staging when DEBUG=False; do not rely on Django to serve media in production.
+if settings.DEBUG or getattr(settings, "SERVE_MEDIA", False):
+    media_prefix = settings.MEDIA_URL.strip("/")  # e.g. "media"
+    urlpatterns += [
+        re_path(
+            rf"^{re.escape(media_prefix)}/(?P<path>.*)$",
+            static_serve,
+            {"document_root": settings.MEDIA_ROOT},
+        )
+    ]

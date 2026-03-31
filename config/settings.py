@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
+SERVE_MEDIA = config('SERVE_MEDIA', default=DEBUG, cast=bool)
 ALLOWED_HOSTS = ['olmaliqjst-2026.uz', 'www.olmaliqjst-2026.uz', '127.0.0.1',]
 
 INSTALLED_APPS = [
