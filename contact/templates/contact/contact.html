@@ -1,26 +1,194 @@
 {% extends 'base.html' %}
-{% block title %}A'loqa{% endblock %}
-{% block content %}
-<section class="card">
-    <h1>Aloqa</h1>
-    {% if contact_info %}
-        <p><strong>Manzil:</strong> {{ contact_info.address }}</p>
-        <p><strong>Telefon:</strong> {{ contact_info.phone }}</p>
-        <p><strong>Email:</strong> {{ contact_info.email }}</p>
-        <p><strong>Ish vaqti:</strong> {{ contact_info.working_hours }}</p>
-    {% endif %}
-</section>
+{% block title %}Aloqa{% endblock %}
 
-<section class="card">
-    <h2>Xabar yuborish</h2>
-    <form method="post" class="form-grid">
-        {% csrf_token %}
-        <input type="text" name="full_name" placeholder="F.I.Sh" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="phone" placeholder="Telefon">
-        <input type="text" name="subject" placeholder="Mavzu" required>
-        <textarea name="message" rows="5" placeholder="Xabar" required></textarea>
-        <button type="submit">Yuborish</button>
-    </form>
+{% block content %}
+<style>
+    .contact-section {
+        background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+    }
+
+    /* LEFT INFO */
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-box {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+    }
+
+    .info-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-box span {
+        font-size: 22px;
+    }
+
+    /* FORM */
+    .contact-form {
+        padding: 30px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, .1);
+    }
+
+    /* BUTTON */
+    .contact-form button {
+        padding: 10px 25px;
+        border: none;
+        background: #0d6efd;
+        color: #fff;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+        background: #0b5ed7;
+    }
+
+    /* MAP */
+    .map-box {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-box iframe {
+        width: 100%;
+        height: 400px;
+        border: 0;
+    }
+</style>
+
+<section>
+
+
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">Aloqa</h2>
+        <p class="text-muted small">Biz bilan bog‘lanish uchun aloqa ma’lumotlari</p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- LEFT: CONTACT INFO -->
+        <div class="col-lg-4">
+            <div class="contact-info">
+
+                {% if contact_info %}
+                <div class="info-box">
+                    <span>📍</span>
+                    <div>
+                        <h6>Manzil</h6>
+                        <p>{{ contact_info.address }}</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <span>📞</span>
+                    <div>
+                        <h6>Telefon</h6>
+                        <p>{{ contact_info.phone }}</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <span>✉️</span>
+                    <div>
+                        <h6>Email</h6>
+                        <p>{{ contact_info.email }}</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <span>🕒</span>
+                    <div>
+                        <h6>Ish vaqti</h6>
+                        <p>{{ contact_info.working_hours }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="col-lg-8">
+            <div class="contact-form">
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <p class="fs-3 fw-semibold">Xabar yuborish</p>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <input type="text" name="full_name" placeholder="F.I.Sh" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" name="phone" placeholder="Telefon">
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" name="subject" placeholder="Mavzu" required>
+                        </div>
+
+                        <div class="col-12">
+                            <textarea name="message" rows="5" placeholder="Xabar" required></textarea>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit">Yuborish</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🗺️ MAP -->
+    {% if contact_info.map_embed %}
+    <div class="map-box mt-5">
+        {{ contact_info.map_embed|safe }}
+    </div>
+    {% endif %}
+
+
 </section>
 {% endblock %}
