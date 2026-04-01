@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}{{ teacher.last_name }} {{ teacher.first_name }}{% endblock %}
 {% block content %}
-<section class="card">
+<section>
+    <img src="{{ teacher.image.url }}" alt="{{ teacher.last_name }} {{ teacher.first_name }}" style="width: 10%; height: auto;">
     <h1>{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.middle_name }}</h1>
-    <p><strong>Lavozim:</strong> {{ teacher.position }}</p>
     <p><strong>Kafedra:</strong> {{ teacher.department.name }}</p>
+    <p><strong>Lavozim:</strong> {{ teacher.position }}</p>
+    <p><strong>Ma'lumoti:</strong> {{ teacher.scientific_degree }}</p>
     <p><strong>Tajriba:</strong> {{ teacher.experience_years }} yil</p>
+    <p><strong>Email:</strong> {{ teacher.email }}</p>
+    <p><strong>Telefon:</strong> {{ teacher.phone }}</p>
     <p>{{ teacher.bio|linebreaks }}</p>
 </section>
 {% endblock %}
