@@ -4,7 +4,7 @@
 <section class="card">
     <h1>Hamkor tashkilotlar</h1>
     {% for category in categories %}
-        <h2 id="{{ category.slug|slugify }}">{{ category.name }}</h2>
+        <h2 id="{{ category.name|slugify }}">{{ category.name }}</h2>
         {% for partner in category.partners.all %}
             {% if partner.is_active %}
                 <p>

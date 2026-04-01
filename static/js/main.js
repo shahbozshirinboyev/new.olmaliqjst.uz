@@ -149,12 +149,16 @@ document.addEventListener("click", (event) => {
 
     const href = link.getAttribute("href") || "";
     const isExternal = link.origin !== window.location.origin;
-    const isHashOnly = href.startsWith("#");
+    const hasHash = href.includes("#");
+    const isSamePageHash = hasHash && link.origin === window.location.origin && link.pathname === window.location.pathname;
     const isSpecial = href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:");
     const isBlank = link.target === "_blank";
     const isModified = event.ctrlKey || event.metaKey || event.shiftKey || event.altKey;
 
-    if (!isExternal && !isHashOnly && !isSpecial && !isBlank && !isModified) {
+    // Hash (#...) linklar bo'limga sakrash uchun ishlatiladi.
+    // Ayniqsa bir xil sahifada (/partners/#...) bo'lsa page loader qotib qolishi mumkin,
+    // chunki sahifa qayta yuklanmaydi va `hideLoader()` chaqirilmaydi.
+    if (!isExternal && !hasHash && !isSamePageHash && !isSpecial && !isBlank && !isModified) {
         showLoader();
     }
 });
