@@ -32,8 +32,8 @@ def leadership(request):
 
 
 def material_base(request):
-    material = MaterialBase.objects.first()
-    return render(request, 'core/material_base.html', {'material': material})
+    materials = MaterialBase.objects.all()
+    return render(request, 'core/material_base.html', {'materials': materials})
 
 
 def documents(request):

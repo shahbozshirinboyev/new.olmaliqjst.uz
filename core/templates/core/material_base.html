@@ -8,9 +8,21 @@
         <p class="text-muted small">Zamonaviy moddiy-texnik baza mavjudligi</p>
     </div>
 
-    
-    <h1>{{ material.title|default:"Moddiy-texnik " }}</h1>
-    <p>{{ material.description|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
-
+    <div class="row">
+        {% for material in materials %}
+        <div class="mb-4">
+            <div class="d-flex align-items-center my-4">
+                <p class="fw-bold text-uppercase me-3 mb-0" style="font-size: clamp(13px, 1.6vw, 24px);">
+                    {{ material.title|default:"Texnikumning moddiy-texnik bazasi" }}
+                </p>
+                <div class="flex-grow-1" style="height:1px; background:#ccc;"></div>
+            </div>
+            {% if material.image %}
+            <img src="{{ material.image.url }}" class="card-img-top" alt="{{ material.title }}"
+                style="width: 100%; height: auto; object-fit: cover;">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
 </section>
 {% endblock %}
