@@ -86,27 +86,107 @@
                 font-size: 14px;
             }
 
-            .teachers-list {
-                list-style: none;
-                padding: 0;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 15px;
-            }
-            .teachers-list li a {
-                display: block;
-                padding: 10px 15px;
-                background: #fff;
-                border: 1px solid #eee;
-                text-decoration: none;
-                color: #333;
-                transition: 0.3s;
-            }
-            .teachers-list li a:hover {
-                border-color: #0056b3;
-                color: #0056b3;
-                transform: translateX(5px);
-            }
+
+
+.teacher-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.teacher-card {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #222;
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.teacher-img-wrap {
+    width: 110px;
+    height: 140px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.teacher-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.teacher-content {
+    flex: 1;
+}
+
+.teacher-content h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.position {
+    font-size: 13px;
+    color: #666;
+    margin: 6px 0;
+}
+
+.meta {
+    font-size: 12px;
+    color: #888;
+}
+
+.more {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #0056b3;
+    font-weight: 500;
+}
+
+/* 🔥 HOVER EFFECT */
+.teacher-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+.teacher-card:hover img {
+    transform: scale(1.04);
+}
+
+.teacher-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(0,86,179,0.08));
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.teacher-card:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 576px) {
+    .teacher-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .teacher-img-wrap {
+        margin: 0 auto;
+    }
+}
+
+
         </style>
 
         <h1 class="dept-title fs-4 text-center fs-md-2 fs-lg-1">{{ department.name }}</h1>
@@ -129,37 +209,78 @@
                         <!-- Kafedra mudiri -->
                         <div class="d-flex flex-column flex-sm-row mb-2 small">
                             <strong class="me-sm-2">Kafedra mudiri:</strong>
-                            <span class="text-nowrap">Axmedova Feruza Abduraxmanovna</span>
+                            <span class="text-nowrap">{{ department.head_name }}</span>
                         </div>
 
                         <!-- Telefon -->
                         <div class="d-flex flex-column flex-sm-row mb-2 small">
                             <strong class="me-sm-2">Telefon:</strong>
-                            <span>+998 99 936 89 50</span>
+                            <span>{{ department.phone }}</span>
                         </div>
 
                         <!-- Email -->
                         <div class="d-flex flex-column flex-sm-row small">
                             <strong class="me-sm-2">Email:</strong>
-                            <span class="text-break">feruzaahmedova684@gmail.com</span>
+                            <span class="text-break">{{ department.email }}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="section-divider">Kafedra o'qituvchilari</div>
-            <ul class="teachers-list">
-                {% for teacher in teachers %}
-                    <li>
-                        <a href="{% url 'faculty:teacher_detail' teacher.id %}">
-                            {{ teacher.last_name }}
-                            {{ teacher.first_name }}
-                        </a>
-                    </li>
-                    {% empty %}
-                    <p>Hozircha o'qituvchilar kiritilmagan.</p>
-                {% endfor %}
-            </ul>
+
+
+       <div class="teacher-list">
+    {% for teacher in teachers %}
+        <a href="{% url 'faculty:teacher_detail' teacher.id %}" class="teacher-card">
+
+            <div class="teacher-img-wrap">
+                {% if teacher.image %}
+                    <img src="{{ teacher.image.url }}" alt="">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" alt="">
+                {% endif %}
+            </div>
+
+            <div class="teacher-content">
+                <h3>
+                    {{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.middle_name }}
+                </h3>
+
+                <p class="position">
+                    <strong>Lavozimi:</strong>
+                    {{ teacher.position }}
+                </p>
+
+                <div class="position">
+                    <strong>Ma'lumoti:</strong>
+                    <span>{{ teacher.scientific_degree}}</span>
+                </div>
+
+                <div class="position">
+                    <strong>Ish tajribasi: </strong>
+                    <span>{{ teacher.experience_years }} yil</span>
+                </div>
+
+                <div class="position">
+                    <strong>Telfon raqami: </strong>
+                    <span>{{ teacher.phone }}</span>
+                </div>
+                <div class="position">
+                    <strong>Email: </strong>
+                    <span>{{ teacher.email }}</span>
+                </div>
+
+
+
+                <span class="more">
+                    Batafsil →
+                </span>
+            </div>
+
+        </a>
+    {% endfor %}
+</div>
 
         </section>
     {% endblock %}
