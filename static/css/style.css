@@ -628,10 +628,6 @@ html {
     color: var(--muted);
 }
 
-.home-directions {
-    /* margin-top: 22px; */
-}
-
 .home-directions__head {
     display: flex-row;
     align-items: center;

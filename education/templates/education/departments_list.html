@@ -1,12 +1,71 @@
 {% extends 'base.html' %}
-{% block title %}Kafedralar{% endblock %}
-{% block content %}
-<section class="card">
-    <h1>Kafedralar</h1>
-    {% for department in departments %}
-        <p><a href="{% url 'departments:department_detail' department.slug %}">{{ department.name }}</a></p>
-    {% empty %}
-        <p>Kafedralar ro'yxati bo'sh.</p>
-    {% endfor %}
-</section>
+{% block title %}Kafedralar
 {% endblock %}
+{% block content %}
+    <section>
+        <style>
+            /* START Department List CSS Style */
+            .department-list__head {
+                display: flex-row;
+                align-items: center;
+                justify-content: center;
+                text-align: left;
+                gap: 12px;
+                margin: 70px 0 35px;
+            }
+
+            .department-list__head h2 {
+                margin: 0;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+
+            .department-list__head p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 14px;
+                font-weight: 500;
+            }
+            /* END Department List CSS Style */
+        </style>
+
+        <div class="department-list__head">
+            <h2>Kafedralar</h2>
+            <p>Texnikum → Kafedralar</p>
+        </div>
+
+        {% for department in departments %}
+            <div class="department-list__card">
+
+                <h3 class="text-uppercase" >{{ department.name }}</h3>
+
+                <div class="d-md-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-telephone"></i>
+                            <span>{{ department.phone }}</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-envelope"></i>
+                            <span>{{ department.email }}</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-1 mt-sm-0">
+                        <a href="{% url 'departments:department_detail' department.slug %}">
+                            <button type="button" class="btn btn-outline-primary btn-sm">
+                                <span>Batafsil</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <hr class="border border-1 opacity-50">
+                {% empty %}
+                <p>Kafedralar ro'yxati bo'sh.</p>
+            {% endfor %}
+
+        </section>
+    {% endblock %}
