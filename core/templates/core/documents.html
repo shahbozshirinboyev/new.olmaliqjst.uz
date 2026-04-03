@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}Me'yoriy hujjatlar{% endblock %}
+{% block title %}Me'yoriy hujjatlar
+{% endblock %}
 {% block content %}
-<section class="card">
-    <h1>Me'yoriy hujjatlar</h1>
-    {% for doc in documents %}
-        <p>
-            <a href="{{ doc.file.url }}">{{ doc.title }}</a>
-            {% if doc.published_at %} ({{ doc.published_at }}){% endif %}
-        </p>
-    {% empty %}
-        <p>Hujjatlar mavjud emas.</p>
-    {% endfor %}
-</section>
+    <section>
+        <!-- Header -->
+        <div class="mt-5 mt-md-3 mt-lg-2">
+            <h2 class="fw-bold text-uppercase mb-1">Me'yoriy hujjatlar</h2>
+            <p class="text-muted small">Texnikumning me'yoriy hujjatlari</p>
+        </div>
+
+        <div>
+            {% for doc in documents %}
+                <p>
+                    <a href="{{ doc.file.url }}">{{ doc.title }}</a>
+                    {% if doc.published_at %}
+                        ({{ doc.published_at }})
+                    {% endif %}
+                </p>
+                {% empty %}
+                <p>Hujjatlar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

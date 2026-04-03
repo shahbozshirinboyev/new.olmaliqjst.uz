@@ -788,15 +788,6 @@ html {
     gap: 18px;
 }
 
-.item {
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--border);
-}
-
-.item:last-child {
-    border-bottom: none;
-}
-
 .alert {
     background: #dcfce7;
     border: 1px solid #86efac;

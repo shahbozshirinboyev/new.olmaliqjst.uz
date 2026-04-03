@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Amaliyot va bitiruvchilar{% endblock %}
 {% block content %}
-<section class="card">
-    <h1>{{ practice.title|default:"Amaliyot" }}</h1>
-    <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
-    {% if practice.partner_name %}<p>Hamkor: {{ practice.partner_name }}</p>{% endif %}
+<section>
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">Amaliyot</h2>
+        <p class="text-muted small">O'quv jarayonlaridagi amaliyot qismi haqida</p>
+    </div>
+
+    <div>
+        <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    </div>
+
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">Bitiruvchilar</h2>
+        <p class="text-muted small">Bitiruvchilarimiz haqida</p>
+    </div>
+
+    <div>
+        <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    </div>
 </section>
 {% endblock %}

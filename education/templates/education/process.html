@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}O'quv jarayoni{% endblock %}
 {% block content %}
-<section class="card">
-    <h1>{{ process.title|default:"O'quv jarayoni" }}</h1>
-    <p>{{ process.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+<section>
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">O'quv jarayoni</h2>
+        <p class="text-muted small">Texnikumda o'quv mashg'ulotlari qanday o'tadi</p>
+    </div>
+
+    <div>
+        <p>{{ process.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    </div>
 </section>
 {% endblock %}
