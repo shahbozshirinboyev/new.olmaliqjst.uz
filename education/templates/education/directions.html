@@ -11,7 +11,8 @@
 
     {% for direction in directions %}
         <div>
-            <h3 class="fs-3 text-uppercase ">{{ direction.name }}</h3>
+            <h3 class="fs-4 text-uppercase ">{{ direction.name }}</h3>
+            <img src="{{ direction.image.url }}" alt="{{ direction.name }}" class="w-100" style="height: 300px; object-fit: cover; object-position: 0% 25%;">
             <p class="lh-base" style="text-align: justify;">{{ direction.description }}</p>
             <p class="text-muted">Davomiyligi: {{ direction.duration_years }} yil</p>
             <hr>
@@ -19,6 +20,7 @@
     {% empty %}
         <p>Yo'nalishlar mavjud emas.</p>
     {% endfor %}
+
 
 </section>
 {% endblock %}
