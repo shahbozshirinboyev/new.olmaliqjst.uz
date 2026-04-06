@@ -264,30 +264,13 @@ html {
     place-items: center;
 }
 
-.hero-fullscreen__overlay {
+/* .hero-fullscreen__overlay {
     width: min(1200px, 95%);
-    text-align: center;
+    text-align: center; 
     padding: 24px;
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(1px);
-}
-
-.hero-fullscreen h1 {
-    margin: 0;
-    color: #0b1220;
-    font-size: clamp(30px, 4vw, 56px);
-    line-height: 1.06;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-.hero-fullscreen__line {
-    display: block;
-    width: min(260px, 60%);
-    height: 3px;
-    background: #0b1220;
-    margin: 18px auto 0;
-}
+} */
 
 .home-sections {
     margin-top: 22px;
