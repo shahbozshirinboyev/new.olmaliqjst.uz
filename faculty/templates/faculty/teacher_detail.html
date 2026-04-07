@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ teacher.last_name }} {{ teacher.first_name }}{% endblock %}
 
 {% block content %}
@@ -15,17 +16,15 @@
                         alt="{{ teacher.last_name }} {{ teacher.first_name }}"
                         class="img-fluid rounded-4 shadow-sm border"
                         style="width: 100%; max-width: 200px; height: auto;"
+                        onerror="this.onerror=null;this.src='{% static 'images/user_icon_640.png' %}';"
                     >
                 {% else %}
-                    <div
-                        class="mx-auto rounded-4 border d-flex align-items-center justify-content-center text-secondary bg-light"
-                        style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; height: auto;"
+                    <img
+                        src="{% static 'images/user_icon_640.png' %}"
+                        alt="{{ teacher.last_name }} {{ teacher.first_name }}"
+                        class="img-fluid rounded-4 shadow-sm border"
+                        style="width: 100%; max-width: 200px; height: auto;"
                     >
-                        <div class="text-center small">
-                            <i class="bi bi-image fs-4 d-block mb-2"></i>
-                            Rasm yo'q
-                        </div>
-                    </div>
                 {% endif %}
             </div>
 

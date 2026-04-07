@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     {{ department.name }}
 {% endblock %}
@@ -168,6 +169,7 @@
     inset: 0;
     background: linear-gradient(90deg, transparent, rgba(0,86,179,0.08));
     opacity: 0;
+    pointer-events: none;
     transition: 0.3s;
 }
 
@@ -205,28 +207,62 @@
 
                 <div class="section-divider">Kafedra mudiri</div>
 
-                <div class="head-card">
-                    <div
-                        class="head-info">
-                        <!-- Kafedra mudiri -->
-                        <div class="d-flex flex-column flex-sm-row mb-2 small">
-                            <strong class="me-sm-2">Kafedra mudiri:</strong>
-                            <span class="text-nowrap">{{ department.head_name }}</span>
+                {% if department.head %}
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrap">
+                            {% if department.head.image %}
+                                <img
+                                    src="{{ department.head.image.url }}"
+                                    alt=""
+                                    onerror="this.onerror=null;this.src='{% static 'images/user_icon_640.png' %}';"
+                                >
+                            {% else %}
+                                <img src="{% static 'images/user_icon_640.png' %}" alt="">
+                            {% endif %}
                         </div>
 
-                        <!-- Telefon -->
-                        <div class="d-flex flex-column flex-sm-row mb-2 small">
-                            <strong class="me-sm-2">Telefon:</strong>
-                            <span>{{ department.phone }}</span>
-                        </div>
+                        <div class="teacher-content">
+                            <h3>
+                                {{ department.head.last_name }} {{ department.head.first_name }}{% if department.head.middle_name %} {{ department.head.middle_name }}{% endif %}
+                            </h3>
 
-                        <!-- Email -->
-                        <div class="d-flex flex-column flex-sm-row small">
-                            <strong class="me-sm-2">Email:</strong>
-                            <span class="text-break">{{ department.email }}</span>
+                            <p class="position">
+                                <strong>Lavozimi:</strong>
+                                {{ department.head.position }}
+                            </p>
+
+                            {% if department.head.scientific_degree %}
+                                <div class="position">
+                                    <strong>Ma'lumoti:</strong>
+                                    <span>{{ department.head.scientific_degree }}</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="position">
+                                <strong>Ish tajribasi: </strong>
+                                <span>{{ department.head.experience_years }} yil</span>
+                            </div>
+
+                            {% if department.head.phone %}
+                                <div class="position">
+                                    <strong>Telfon raqami: </strong>
+                                    <span>{{ department.head.phone }}</span>
+                                </div>
+                            {% endif %}
+
+                            {% if department.head.email %}
+                                <div class="position">
+                                    <strong>Email: </strong>
+                                    <span>{{ department.head.email }}</span>
+                                </div>
+                            {% endif %}
+
+                            <a class="more text-decoration-none" href="{% url 'departments:department_head_detail' department.head.id %}">
+                                Batafsil →
+                            </a>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
 
             <div class="section-divider">Kafedra o'qituvchilari</div>
@@ -238,9 +274,13 @@
 
             <div class="teacher-img-wrap">
                 {% if teacher.image %}
-                    <img src="{{ teacher.image.url }}" alt="">
+                    <img
+                        src="{{ teacher.image.url }}"
+                        alt=""
+                        onerror="this.onerror=null;this.src="{% static "images/user_icon_640.png" %}";"
+                    >
                 {% else %}
-                    <img src="https://via.placeholder.com/150" alt="">
+                    <img src="{% static 'images/user_icon_640.png' %}" alt="">
                 {% endif %}
             </div>
 

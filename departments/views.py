@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Department
+from .models import Department, DepartmentHead
 
 
 def department_list(request):
@@ -16,3 +16,8 @@ def department_detail(request, slug):
         'departments/department_detail.html',
         {'department': item, 'teachers': teachers},
     )
+
+
+def department_head_detail(request, pk):
+    head = get_object_or_404(DepartmentHead, pk=pk)
+    return render(request, 'departments/department_head_detail.html', {'head': head})

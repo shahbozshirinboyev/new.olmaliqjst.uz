@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ head.last_name }} {{ head.first_name }}{% endblock %}
+
+{% block content %}
+<section class="py-3">
+    <div class="rounded-4 overflow-hidden border shadow-sm bg-white">
+        <div class="row g-0">
+            <div
+                class="col-12 col-md-4 col-lg-3 p-3 p-md-4 text-center"
+                style="background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);"
+            >
+                {% if head.image %}
+                    <img
+                        src="{{ head.image.url }}"
+                        alt="{{ head.last_name }} {{ head.first_name }}"
+                        class="img-fluid rounded-4 shadow-sm border"
+                        style="width: 100%; max-width: 200px; height: auto;"
+                        onerror="this.onerror=null;this.src='{% static 'images/user_icon_640.png' %}';"
+                    >
+                {% else %}
+                    <img
+                        src="{% static 'images/user_icon_640.png' %}"
+                        alt="{{ head.last_name }} {{ head.first_name }}"
+                        class="img-fluid rounded-4 shadow-sm border"
+                        style="width: 100%; max-width: 200px; height: auto;"
+                    >
+                {% endif %}
+            </div>
+
+            <div class="col-12 col-md-8 col-lg-9 p-3 p-md-4">
+                <div class="mb-4">
+                    <h1 class="h4 fw-bold mb-1">
+                        {{ head.last_name }} {{ head.first_name }} {{ head.middle_name }}
+                    </h1>
+
+                    <p class="text-secondary mb-0 small d-flex align-items-center gap-2">
+                        <i class="bi bi-person-workspace"></i>
+                        <span>{{ head.position }}</span>
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        {% if head.department %}
+                            <a
+                                href="{% url 'departments:department_detail' head.department.slug %}"
+                                class="badge rounded-pill text-bg-light border text-dark fw-normal px-3 py-2 text-decoration-none"
+                            >
+                                <i class="bi bi-buildings me-1"></i>
+                                {{ head.department.name }}
+                            </a>
+                        {% endif %}
+
+                        {% if head.scientific_degree %}
+                            <span class="badge rounded-pill text-bg-light border text-dark fw-normal px-3 py-2">
+                                <i class="bi bi-mortarboard me-1"></i>
+                                {{ head.scientific_degree }}
+                            </span>
+                        {% endif %}
+
+                        <span class="badge rounded-pill text-bg-light border text-dark fw-normal px-3 py-2">
+                            <i class="bi bi-briefcase me-1"></i>
+                            {{ head.experience_years }} yil tajriba
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row g-2 mb-3">
+                    {% if head.email %}
+                        <div class="col-12 col-sm-6">
+                            <div class="rounded-3 border bg-light px-3 py-2 h-100 small">
+                                <div class="text-secondary mb-1">
+                                    <i class="bi bi-envelope me-1"></i>Email
+                                </div>
+                                <a href="mailto:{{ head.email }}" class="text-decoration-none fw-medium">
+                                    {{ head.email }}
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if head.phone %}
+                        <div class="col-12 col-sm-6">
+                            <div class="rounded-3 border bg-light px-3 py-2 h-100 small">
+                                <div class="text-secondary mb-1">
+                                    <i class="bi bi-telephone me-1"></i>Telefon
+                                </div>
+                                <a href="tel:{{ head.phone }}" class="text-decoration-none fw-medium">
+                                    {{ head.phone }}
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="row g-2 mb-3">
+                    {% if head.department %}
+                        <div class="col-12 col-sm-6">
+                            <div class="rounded-3 border px-3 py-2 h-100 small">
+                                <div class="text-secondary mb-1">
+                                    <i class="bi bi-diagram-3 me-1"></i>Kafedra
+                                </div>
+                                <div class="fw-medium">{{ head.department.name }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="col-12 col-sm-6">
+                        <div class="rounded-3 border px-3 py-2 h-100 small">
+                            <div class="text-secondary mb-1">
+                                <i class="bi bi-person-workspace me-1"></i>Lavozim
+                            </div>
+                            <div class="fw-medium">{{ head.position }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-4 p-3 border" style="background: #fcfdff;">
+                    <h2 class="h6 fw-bold mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-file-text"></i>
+                        <span>Biografiya</span>
+                    </h2>
+                    <div class="small text-secondary" style="line-height: 1.7;">
+                        {{ head.bio|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

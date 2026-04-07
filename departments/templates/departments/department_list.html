@@ -6,7 +6,10 @@
     {% for department in departments %}
         <div class="item">
             <h3><a href="{% url 'departments:department_detail' department.slug %}">{{ department.name }}</a></h3>
-            <p>Kafedra mudiri: {{ department.head_name }}</p>
+            <p>
+                Kafedra mudiri:
+                {{ department.head.last_name }} {{ department.head.first_name }}{% if department.head.middle_name %} {{ department.head.middle_name }}{% endif %}
+            </p>
         </div>
     {% empty %}
         <p>Kafedralar mavjud emas.</p>
