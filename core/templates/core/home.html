@@ -1,171 +1,151 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Bosh sahifa{% endblock %}
+{% block title %}Bosh sahifa
+{% endblock %}
 
 {% block content %}
 
-<section class="hero-fullscreen" style="background-image: url('{% static "images/hero.webp" %}')">
-    <div class="text-center mx-2 mx-md-3 mx-lg-5 bg-black bg-opacity-25 rounded-3 p-3 text-light">
-        <p class="fs-3 fs-md-2 fs-lg-1 fw-bold text-uppercase my-0">
-            Sog‘lom jamiyat — bilimli mutaxassisdan boshlanadi
+    <section class="hero-fullscreen" style="background-image: url('{% static "images/hero.webp" %}')">
+        <div class="text-center mx-2 mx-md-3 mx-lg-5 bg-black bg-opacity-25 rounded-3 p-3 text-light">
+            <p class="fs-3 fs-md-2 fs-lg-1 fw-bold text-uppercase my-0">
+                Sog‘lom jamiyat — bilimli mutaxassisdan boshlanadi
+            </p>
+            <div class="border-2 border-top border-white text-center">
+                <span class="fs-5 fw-medium text-uppercase">Olmaliq Abu Ali ibn Sino nomidagi Jamoat salomatligi texnikumi sizni kutmoqda</span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-directions__head">
+            <h2>Texnikum yo'nalishlari</h2>
+            <p>Bizda bor yo'nalishlar bilan yaqindan tanishing</p>
+        </div>
+
+        <div class="home-directions__list">
+            {% for direction in directions %}
+                <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}" {% if direction.image %} style="background-image: url('{{ direction.image.url }}')" {% else %} style="background-image: url('{% static "images/hero.webp" %}')" {% endif %}>
+                    <span class="home-directions__shade"></span>
+                    <span class="home-directions__cta">
+                        <i class="bi bi-arrow-up-right"></i>
+                    </span>
+                    <h3>{{ direction.name }}</h3>
+                    {% if direction.description %}
+                        <p class="home-directions__desc">{{ direction.description|truncatechars:95 }}</p>
+                    {% endif %}
+                </a>
+                {% empty %}
+                <p>Yo'nalishlar hozircha kiritilmagan.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <div class="home-directions__head">
+            <h2>Texnikum raqamlarda</h2>
+            <p>Texnikumning ba'zi statistika ma'lumotlari</p>
+        </div>
+
+        <div class="home-stats__grid">
+            {% for stat in tech_stats %}
+                <div class="home-stats__item">
+                    <div class="home-stats__icon">
+                        <i class="bi {{ stat.icon }}"></i>
+                    </div>
+                    <div class="home-stats__content">
+                        <div class="home-stats__value">{{ stat.count }}</div>
+                        <div class="home-stats__label">{{ stat.name }}</div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="home-stats__empty">Raqamlar hozircha kiritilmagan.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+
+        <div class="home-directions__head">
+            <h2>So'nggi yangiliklar</h2>
+            <p>Texnikum hayotidagi eng so‘nggi yangiliklar</p>
+        </div>
+
+        <div class="home-news__grid">
+            {% for item in latest_news %}
+                <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
+                    <div class="home-news__image" {% if item.image %} style="background-image: url('{{ item.image.url }}')" {% else %} style="background-image: url('{% static "images/hero.webp" %}')" {% endif %}></div>
+                    <div class="home-news__body">
+                        <div class="home-news__meta d-flex justify-content-between">
+                            <div>
+                                <i class="bi bi-calendar3"></i>
+                                <span>{{ item.published_at|date:"d.m.Y / H:i" }}</span>
+                            </div>
+                            <div>
+                                <i class="bi bi-eye"></i>
+                                <span>{{ item.views_count }}</span>
+                            </div>
+                        </div>
+                        <h3>{{ item.title }}</h3>
+                        <p class="home-news__excerpt">{{ item.content|striptags|truncatechars:140 }}</p>
+                    </div>
+                </a>
+                {% empty %}
+                <p>Yangiliklar mavjud emas.</p>
+            {% endfor %}
+        </div>
+
+        <div class="home-news__footer">
+            <a class="home-news__all-link" href="{% url 'news:news_list' %}">Barcha yangiliklarni ko'rish</a>
+        </div>
+
+    </section>
+
+    <section>
+        <div class="home-directions__head">
+            <h2>Tibbiyot texnikumiga virtual sayohat</h2>
+            <p>Texnikum muhitini virtual tarzda ko‘rib chiqing</p>
+        </div>
+
+        <div class="video-container">
+            <iframe class="video-iframe" src="https://www.youtube.com/embed/BvvnVEFkskI?si=xBI9bk91lYXr0qyL" title="YouTube video player" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="home-virtual-tour__fallback">
+            Video ko'rinmasa
+            <a href="https://youtu.be/n_jOwDJZngU?si=Gbl1MFZe3gCXyLsW" target="_blank" rel="noopener">YouTube'da oching</a>.
         </p>
-        <div class="border-2 border-top border-white text-center">
-            <span class="fs-5 fw-medium text-uppercase">Olmaliq Abu Ali ibn Sino nomidagi Jamoat salomatligi texnikumi sizni kutmoqda</span>
+    </section>
+
+    <section>
+        <div class="home-directions__head">
+            <h2>E'lonlar</h2>
+            <p>Muhim e'lonlar va yangiliklardan xabardor bo‘ling</p>
         </div>
-    </div>
-</section>
-<section>
-    <div class="home-directions__head">
-        <h2>Texnikum yo'nalishlari</h2>
-        <p>Bizda bor yo'nalishlar bilan yaqindan tanishing</p>
-    </div>
-
-    <div class="home-directions__list">
-        {% for direction in directions %}
-        <a class="home-directions__item home-directions__item--photo" href="{% url 'education:directions' %}"
-            {% if direction.image %}
-            style="background-image: url('{{ direction.image.url }}')"
-            {% else %}
-            style="background-image: url('{% static "images/hero.webp" %}')"
-            {% endif %}>
-            <span class="home-directions__shade"></span>
-            <span class="home-directions__cta">
-                <i class="bi bi-arrow-up-right"></i>
-            </span>
-            <h3>{{ direction.name }}</h3>
-            {% if direction.description %}
-            <p class="home-directions__desc">{{ direction.description|truncatechars:95 }}</p>
-            {% endif %}
-        </a>
-        {% empty %}
-        <p>Yo'nalishlar hozircha kiritilmagan.</p>
-        {% endfor %}
-    </div>
-</section>
-
-<section>
-    <div class="home-directions__head">
-        <h2>Texnikum raqamlarda</h2>
-        <p>Texnikumning ba'zi statistika ma'lumotlari</p>
-    </div>
-
-    <div class="home-stats__grid">
-        {% for stat in tech_stats %}
-        <div class="home-stats__item">
-            <div class="home-stats__icon">
-                <i class="bi {{ stat.icon }}"></i>
-            </div>
-            <div class="home-stats__content">
-                <div class="home-stats__value">{{ stat.count }}</div>
-                <div class="home-stats__label">{{ stat.name }}</div>
-            </div>
+        <div class="home-news__grid">
+            {% for announcement in announcements %}
+                <a class="home-news__card" href="{% url 'core:announcement_detail' announcement.pk %}">
+                    <div class="home-news__image" {% if announcement.image %} style="background-image: url('{{ announcement.image.url }}')" {% else %} style="background-image: url('{% static "images/hero.webp" %}')" {% endif %}></div>
+                    <div class="home-news__body">
+                        <div class="home-news__meta d-flex justify-content-between">
+                            <div>
+                                <i class="bi bi-calendar3"></i>
+                                <span>{{ announcement.published_at|date:"d.m.Y / H:i" }}</span>
+                            </div>
+                            <div>
+                                <i class="bi bi-eye"></i>
+                                <span>{{ announcement.views_count }}</span>
+                            </div>
+                        </div>
+                        <h3>{{ announcement.title }}</h3>
+                        <p class="home-news__excerpt">{{ announcement.content|striptags|truncatechars:140 }}</p>
+                    </div>
+                </a>
+                {% empty %}
+                <p>E'lonlar mavjud emas.</p>
+            {% endfor %}
         </div>
-        {% empty %}
-        <p class="home-stats__empty">Raqamlar hozircha kiritilmagan.</p>
-        {% endfor %}
-    </div>
-</section>
-
-<section>
-
-    <div class="home-directions__head">
-        <h2>So'nggi yangiliklar</h2>
-        <p>Texnikum hayotidagi eng so‘nggi yangiliklar</p>
-    </div>
-
-    <div class="home-news__grid">
-        {% for item in latest_news %}
-        <a class="home-news__card" href="{% url 'news:news_detail' item.slug %}">
-            <div class="home-news__image"
-                {% if item.image %}
-                style="background-image: url('{{ item.image.url }}')"
-                {% else %}
-                style="background-image: url('{% static "images/hero.webp" %}')"
-                {% endif %}>
-            </div>
-            <div class="home-news__body">
-                <div class="home-news__meta d-flex justify-content-between">
-                    <div>
-                        <i class="bi bi-calendar3"></i>
-                        <span>{{ item.published_at|date:"d.m.Y / H:i" }}</span>
-                    </div>
-                    <div>
-                        <i class="bi bi-eye"></i>
-                        <span>{{ item.views_count }}</span>
-                    </div>
-                </div>
-                <h3>{{ item.title }}</h3>
-                <p class="home-news__excerpt">{{ item.content|striptags|truncatechars:140 }}</p>
-            </div>
-        </a>
-        {% empty %}
-        <p>Yangiliklar mavjud emas.</p>
-        {% endfor %}
-    </div>
-
-    <div class="home-news__footer">
-        <a class="home-news__all-link" href="{% url 'news:news_list' %}">Barcha yangiliklarni ko'rish</a>
-    </div>
-
-</section>
-
-<section>
-    <div class="home-directions__head">
-        <h2>Tibbiyot texnikumiga virtual sayohat</h2>
-        <p>Texnikum muhitini virtual tarzda ko‘rib chiqing</p>
-    </div>
-
-    <div class="video-container">
-        <iframe class="video-iframe"
-            src="https://www.youtube.com/embed/BvvnVEFkskI?si=xBI9bk91lYXr0qyL"
-            title="YouTube video player" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen>
-        </iframe>
-    </div>
-    <p class="home-virtual-tour__fallback">
-        Video ko'rinmasa
-        <a href="https://youtu.be/n_jOwDJZngU?si=Gbl1MFZe3gCXyLsW" target="_blank" rel="noopener">YouTube'da oching</a>.
-    </p>
-</section>
-
-<section>
-    <div class="home-directions__head">
-        <h2>E'lonlar</h2>
-        <p>Muhim e'lonlar va yangiliklardan xabardor bo‘ling</p>
-    </div>
-    <div class="home-news__grid">
-        {% for announcement in announcements %}
-        <a class="home-news__card" href="{% url 'core:announcement_detail' announcement.pk %}">
-            <div class="home-news__image"
-                {% if announcement.image %}
-                style="background-image: url('{{ announcement.image.url }}')"
-                {% else %}
-                style="background-image: url('{% static "images/hero.webp" %}')"
-                {% endif %}>
-            </div>
-            <div class="home-news__body">
-                <div class="home-news__meta d-flex justify-content-between">
-                    <div>
-                        <i class="bi bi-calendar3"></i>
-                        <span>{{ announcement.published_at|date:"d.m.Y / H:i" }}</span>
-                    </div>
-                    <div>
-                        <i class="bi bi-eye"></i>
-                        <span>{{ announcement.views_count }}</span>
-                    </div>
-                </div>
-                <h3>{{ announcement.title }}</h3>
-                <p class="home-news__excerpt">{{ announcement.content|striptags|truncatechars:140 }}</p>
-            </div>
-        </a>
-        {% empty %}
-        <p>E'lonlar mavjud emas.</p>
-        {% endfor %}
-    </div>
-    <div class="home-news__footer">
-        <a class="home-news__all-link" href="{% url 'core:announcements_list' %}">Barcha e'lonlarni ko'rish</a>
-    </div>
-</section>
+        <div class="home-news__footer">
+            <a class="home-news__all-link" href="{% url 'core:announcements_list' %}">Barcha e'lonlarni ko'rish</a>
+        </div>
+    </section>
 
 {% endblock %}
