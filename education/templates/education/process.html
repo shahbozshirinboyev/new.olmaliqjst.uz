@@ -8,8 +8,23 @@
         <p class="text-muted small">Texnikumda o'quv mashg'ulotlari qanday o'tadi</p>
     </div>
 
-    <div>
-        <p>{{ process.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
-    </div>
+    {% for process in processes %}
+        <div>
+            <hr>
+            <p class="text-center fs-3 fw-medium">{{ process.title }}</p>
+            {% if process.image %}
+                <img src="{{ process.image.url }}" alt="{{ process.title }}" class="w-100 h-auto mb-3">
+            {% endif %}
+            <p class="text-muted small mb-3">
+                Yaratilgan: {{ process.created_at|date:"d.m.Y H:i" }}
+            </p>
+            <p class="fst-normal">{{ process.content|linebreaks }}</p>
+        </div>
+    {% empty %}
+        <div>
+            <p>Ma'lumot kiritilmagan.</p>
+        </div>
+    {% endfor %}
+
 </section>
 {% endblock %}

@@ -16,8 +16,8 @@ def departments_list(request):
 
 
 def process(request):
-    process_obj = EducationProcess.objects.first()
-    return render(request, 'education/process.html', {'process': process_obj})
+    process_list = EducationProcess.objects.order_by('-created_at')
+    return render(request, 'education/process.html', {'processes': process_list})
 
 
 def assessment(request):
