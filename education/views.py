@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from departments.models import Department
 
-from .models import Assessment, EducationDirection, EducationProcess, Practice
+from .models import Assessment, Control, EducationDirection, EducationProcess, Practice
 
 
 def directions(request):
@@ -21,8 +21,16 @@ def process(request):
 
 
 def assessment(request):
-    assessment_obj = Assessment.objects.first()
-    return render(request, 'education/assessment.html', {'assessment': assessment_obj})
+    assessment_obj = Assessment.objects.all()
+    control_obj = Control.objects.all()
+    return render(
+        request,
+        'education/assessment.html',
+        {
+            'assessment': assessment_obj,
+            'control': control_obj,
+        },
+    )
 
 
 def practice(request):

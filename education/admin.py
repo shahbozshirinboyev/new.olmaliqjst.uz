@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Assessment, EducationDirection, EducationProcess, Practice
+from .models import Assessment, Control, EducationDirection, EducationProcess, Practice
 
 
 @admin.register(EducationDirection)
@@ -28,6 +28,12 @@ class EducationProcessAdmin(admin.ModelAdmin):
 
 @admin.register(Assessment)
 class AssessmentAdmin(admin.ModelAdmin):
+    list_display = ('title', 'updated_at')
+    search_fields = ('title', 'content')
+
+
+@admin.register(Control)
+class ControlAdmin(admin.ModelAdmin):
     list_display = ('title', 'updated_at')
     search_fields = ('title', 'content')
 
