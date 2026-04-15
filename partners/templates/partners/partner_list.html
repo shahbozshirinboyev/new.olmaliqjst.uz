@@ -11,18 +11,26 @@
 
         <div>
             {% for category in categories %}
-                <h2 id="{{ category.name|slugify }}">{{ category.name }}</h2>
+                <h3 class="text-uppercase fw-semibold mb-3" id="{{ category.name|slugify }}">{{ category.name }}</h3>
                 {% for partner in category.partners.all %}
                     {% if partner.is_active %}
-                        <p>
-                            <strong>{{ partner.name }}</strong>
-                            {% if partner.website %}-
-                                <a href="{{ partner.website }}" target="_blank" rel="noopener">Sayt</a>
-                            {% endif %}
-                        </p>
+                        <h4>{{ partner.name }}</h4>
+                        {% if partner.website %}
+                        <div class="text-muted d-flex">
+                            <span class="me-2">Veb-sayt:</span><a href="{{ partner.website }}" target="_blank" rel="noopener">{{ partner.website }}</a>
+                        </div>
+                        {% endif %}
+                        {% if partner.logo %}
+                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="w-100 h-auto">
+                        {% endif %}
+                        {% if partner.description %}
+                        <p>{{ partner.description|linebreaks }}</p>
+                        {% endif %}
+                        <hr>
                     {% endif %}
                     {% empty %}
                     <p>Bu kategoriyada hamkorlar yo'q.</p>
+                    <hr>
                 {% endfor %}
                 {% empty %}
                 <p>Kategoriyalar kiritilmagan.</p>
