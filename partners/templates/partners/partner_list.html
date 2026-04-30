@@ -1,40 +1,55 @@
 {% extends 'base.html' %}
-{% block title %}Hamkor tashkilotlar
-{% endblock %}
+{% load static %}
+{% block title %}Hamkor tashkilotlar{% endblock %}
+
 {% block content %}
-    <section>
-        <!-- Header -->
-        <div class="mt-5 mt-md-3 mt-lg-2">
-            <h2 class="fw-bold text-uppercase mb-1">Hamkor tashkilotlar</h2>
-            <p class="text-muted small">Texnikumning hamkor tashkilotlari haqida ma'lumot</p>
+<section>
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">Hamkor tashkilotlar</h2>
+        <p class="text-muted small">Texnikumning hamkor tashkilotlari haqida ma'lumot</p>
+    </div>
+
+    <div>
+        {% for category in categories %}
+        <h4>
+            <span class="text-uppercase fw-semibold badge text-bg-secondary" id="{{ category.name|slugify }}">
+                {{ category.name }}
+            </span>
+        </h4>
+        {% for partner in category.partners.all %}
+        {% if partner.is_active %}
+        <h4 class="text-uppercase">{{ partner.name }}</h4>
+        {% if partner.website %}
+        <div class="text-muted d-flex">
+            <span class="me-2">Veb-sayt:</span>
+            <a href="{{ partner.website }}" target="_blank" rel="noopener">{{ partner.website }}</a>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class=" col-12 col-md-3">
+                <img
+                    src="{% if partner.logo %}{{ partner.logo.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}"
+                    alt="{{ partner.name }}"
+                    class="w-100 h-auto mt-3">
+            </div>
+            <div class="col-12 col-md-9">
+                {% if partner.description %}
+                <p>{{ partner.description|linebreaks }}</p>
+                {% endif %}
+            </div>
         </div>
 
-        <div>
-            {% for category in categories %}
-                <h3 class="text-uppercase fw-semibold mb-3" id="{{ category.name|slugify }}">{{ category.name }}</h3>
-                {% for partner in category.partners.all %}
-                    {% if partner.is_active %}
-                        <h4>{{ partner.name }}</h4>
-                        {% if partner.website %}
-                        <div class="text-muted d-flex">
-                            <span class="me-2">Veb-sayt:</span><a href="{{ partner.website }}" target="_blank" rel="noopener">{{ partner.website }}</a>
-                        </div>
-                        {% endif %}
-                        {% if partner.logo %}
-                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="w-100 h-auto">
-                        {% endif %}
-                        {% if partner.description %}
-                        <p>{{ partner.description|linebreaks }}</p>
-                        {% endif %}
-                        <hr>
-                    {% endif %}
-                    {% empty %}
-                    <p>Bu kategoriyada hamkorlar yo'q.</p>
-                    <hr>
-                {% endfor %}
-                {% empty %}
-                <p>Kategoriyalar kiritilmagan.</p>
-            {% endfor %}
-        </div>
-    </section>
+        <hr>
+        {% endif %}
+        {% empty %}
+        <p>Bu kategoriyada hamkorlar yo'q.</p>
+        <hr>
+        {% endfor %}
+        {% empty %}
+        <p>Kategoriyalar kiritilmagan.</p>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

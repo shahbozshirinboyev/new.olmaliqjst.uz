@@ -261,16 +261,8 @@ html {
     background-repeat: no-repeat;
     position: relative;
     display: grid;
-    place-items: center;
+    /* place-items: center; */
 }
-
-/* .hero-fullscreen__overlay {
-    width: min(1200px, 95%);
-    text-align: center; 
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(1px);
-} */
 
 .home-sections {
     margin-top: 22px;
