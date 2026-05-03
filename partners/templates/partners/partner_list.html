@@ -13,7 +13,7 @@
     <div>
         {% for category in categories %}
         <h4>
-            <span class="text-uppercase fw-semibold badge text-bg-secondary" id="{{ category.name|slugify }}">
+            <span class="text-uppercase fw-semibold badge text-bg-primary" id="{{ category.name|slugify }}">
                 {{ category.name }}
             </span>
         </h4>
@@ -28,13 +28,13 @@
         {% endif %}
 
         <div class="row">
-            <div class=" col-12 col-md-3">
+            <div class="col-12 col-md-4">
                 <img
                     src="{% if partner.logo %}{{ partner.logo.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}"
                     alt="{{ partner.name }}"
                     class="w-100 h-auto mt-3">
             </div>
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-md-8">
                 {% if partner.description %}
                 <p>{{ partner.description|linebreaks }}</p>
                 {% endif %}
