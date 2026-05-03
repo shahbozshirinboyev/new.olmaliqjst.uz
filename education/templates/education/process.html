@@ -9,16 +9,22 @@
     </div>
 
     {% for process in processes %}
-        <div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center text-md-start fs-3 fw-medium mt-2">{{ process.title }}</p>
+            </div>
+            <div class="col-12 col-md-4">
+                {% if process.image %}
+                    <img src="{{ process.image.url }}" alt="{{ process.title }}" class="w-100 h-auto mb-1">
+                {% endif %}
+                <span class="text-muted small mb-3">
+                    Yaratilgan: {{ process.created_at|date:"d.m.Y H:i" }}
+                </span>
+            </div>
+            <div class="col-12 col-md-8 fst-normal">
+                {{ process.content|linebreaks }}
+            </div>
             <hr>
-            <p class="text-center fs-3 fw-medium">{{ process.title }}</p>
-            {% if process.image %}
-                <img src="{{ process.image.url }}" alt="{{ process.title }}" class="w-100 h-auto mb-3">
-            {% endif %}
-            <p class="text-muted small mb-3">
-                Yaratilgan: {{ process.created_at|date:"d.m.Y H:i" }}
-            </p>
-            <p class="fst-normal">{{ process.content|linebreaks }}</p>
         </div>
     {% empty %}
         <div>
