@@ -86,3 +86,9 @@ __pycache__/
 local_settings.py
 
 .env
+
+### Database va foydalanuvchi yuklagan rasmlar (gitga kiritilmasin)
+db.sqlite3
+*.sqlite3
+db.sqlite3-journal
+media/

@@ -58,10 +58,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Bazani git papkasidan tashqarida saqlash uchun .env / muhit o'zgaruvchisida DB_PATH berilishi mumkin.
+# Masalan cPanel: DB_PATH=/home/USER/databases/olmaliqjst.sqlite3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': config('DB_PATH', default=str(BASE_DIR / 'db.sqlite3')),
     }
 }
 
@@ -87,7 +89,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# Yuklangan rasmlar git papkasidan tashqarida saqlanishi mumkin.
+# Masalan cPanel: MEDIA_PATH=/home/USER/storage/media
+MEDIA_ROOT = config('MEDIA_PATH', default=str(BASE_DIR / 'media'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
