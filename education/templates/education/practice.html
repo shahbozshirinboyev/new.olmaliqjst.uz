@@ -1,25 +1,90 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Amaliyot va bitiruvchilar{% endblock %}
 {% block content %}
 <section>
-    <!-- Header -->
+    <!-- Amaliyot -->
     <div class="mt-5 mt-md-3 mt-lg-2">
         <h2 class="fw-bold text-uppercase mb-1">Amaliyot</h2>
         <p class="text-muted small">O'quv jarayonlaridagi amaliyot qismi haqida</p>
     </div>
 
-    <div>
-        <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for item in practices %}
+        <div class="col">
+            <article class="card h-100 shadow-sm border-0 overflow-hidden">
+                <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}"
+                     alt="{{ item.title }}" class="card-img-top practice-card-img">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap gap-2">
+                        {% if item.practice_type %}
+                        <span class="badge text-bg-primary">{{ item.get_practice_type_display }}</span>
+                        {% endif %}
+                        {% if item.period %}
+                        <span class="badge text-bg-secondary">{{ item.period }}</span>
+                        {% endif %}
+                    </div>
+                    <h5 class="card-title fw-semibold mt-3 mb-2">{{ item.title }}</h5>
+                    <p class="card-text text-muted small mb-0">{{ item.description|truncatewords:30|linebreaks }}</p>
+                </div>
+                {% if item.partner_display %}
+                <div class="card-footer bg-white border-0 small text-muted d-flex align-items-center gap-2 pb-3">
+                    <i class="bi bi-building"></i>
+                    <span>Hamkor: <span class="fw-semibold text-dark">{{ item.partner_display }}</span></span>
+                </div>
+                {% endif %}
+            </article>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>Amaliyot haqida ma'lumot kiritilmagan.</p>
+        </div>
+        {% endfor %}
     </div>
 
-    <!-- Header -->
+    <!-- Bitiruvchilar -->
     <div class="mt-5 mt-md-3 mt-lg-2">
         <h2 class="fw-bold text-uppercase mb-1">Bitiruvchilar</h2>
         <p class="text-muted small">Bitiruvchilarimiz haqida</p>
     </div>
 
-    <div>
-        <p>{{ practice.content|default:"Ma'lumot kiritilmagan."|linebreaks }}</p>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+        {% for graduate in graduates %}
+        <div class="col">
+            <article class="card h-100 shadow-sm border-0 overflow-hidden text-center">
+                <img src="{% if graduate.image %}{{ graduate.image.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}"
+                     alt="{{ graduate.full_name }}" class="card-img-top graduate-card-img">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-semibold mb-1">{{ graduate.full_name }}</h5>
+                    <div class="small text-muted mb-2">
+                        {{ graduate.graduation_year }}
+                        {% if graduate.direction %}&middot; {{ graduate.direction.name }}{% endif %}
+                    </div>
+                    {% if graduate.position %}
+                    <div class="small fw-semibold">{{ graduate.position }}</div>
+                    {% endif %}
+                    {% if graduate.workplace %}
+                    <div class="small text-muted">{{ graduate.workplace }}</div>
+                    {% endif %}
+                    {% if graduate.bio %}
+                    <p class="card-text small mt-3 mb-2">{{ graduate.bio|truncatewords:25 }}</p>
+                    {% endif %}
+                    {% if graduate.achievement %}
+                    <p class="small mb-2"><i class="bi bi-trophy text-warning me-1"></i>{{ graduate.achievement|truncatewords:15 }}</p>
+                    {% endif %}
+                    {% if graduate.quote %}
+                    <blockquote class="small fst-italic text-muted mt-auto mb-0 border-start border-2 ps-2">
+                        &laquo;{{ graduate.quote }}&raquo;
+                    </blockquote>
+                    {% endif %}
+                </div>
+            </article>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>Bitiruvchilar haqida ma'lumot kiritilmagan.</p>
+        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
