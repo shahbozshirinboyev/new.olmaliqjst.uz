@@ -1,25 +1,30 @@
 {% extends 'base.html' %}
-{% block title %}Rahbariyat
-{% endblock %}
+{% load static %}
+{% block title %}Rahbariyat{% endblock %}
 {% block content %}
-    <section>
-        <!-- Header -->
-        <div class="mt-5 mt-md-3 mt-lg-2">
-            <h2 class="fw-bold text-uppercase mb-1">Rahbariyat</h2>
-            <p class="text-muted small">Texnikum rahbariyati haqida ma'lumot</p>
-        </div>
+<section>
+    <!-- Header -->
+    <div class="mt-5 mt-md-3 mt-lg-2">
+        <h2 class="fw-bold text-uppercase mb-1">Rahbariyat</h2>
+        <p class="text-muted small">Texnikum rahbariyati haqida ma'lumot</p>
+    </div>
 
-        <div>
-            {% for leader in leaders %}
-                <div class="item">
-                    <h3>{{ leader.full_name }}</h3>
-                    <p>{{ leader.position }}</p>
-                    <p>{{ leader.bio }}</p>
-                </div>
-                {% empty %}
-                <p>Rahbariyat ma'lumotlari mavjud emas.</p>
-            {% endfor %}
+    {% for leader in leaders %}
+    <div class="row mb-4">
+        <div class="col-12 col-md-4">
+            <img src="{% if leader.image %}{{ leader.image.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}"
+                 alt="{{ leader.full_name }}" class="w-100 h-auto leader-card-img">
         </div>
-
-    </section>
+        <div class="col-12 col-md-8">
+            <h3 class="fw-semibold h5 mb-1">{{ leader.full_name }}</h3>
+            <span class="badge text-bg-primary mb-3">{{ leader.position }}</span>
+            {% if leader.bio %}
+            <div class="text-muted small">{{ leader.bio|linebreaks }}</div>
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+    <p>Rahbariyat ma'lumotlari mavjud emas.</p>
+    {% endfor %}
+</section>
 {% endblock %}

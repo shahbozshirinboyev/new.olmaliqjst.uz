@@ -1238,3 +1238,9 @@ textarea,
     object-fit: cover;
     object-position: center top;
 }
+
+.leader-card-img {
+    max-height: 420px;
+    object-fit: cover;
+    object-position: center top;
+}
